@@ -102,6 +102,7 @@ function CountUp({ value }: { value: string }) {
   const [shown, setShown] = useState(value);
   useEffect(() => {
     const el = ref.current, m = /^(\d+(?:\.\d+)?)(.*)$/.exec(value);
+    setShown(value);
     if (!el || !m || reducedMotion() || typeof window === "undefined" || !("IntersectionObserver" in window)) { setShown(value); return; }
     const target = Number(m[1]), rest = m[2], digits = m[1].includes(".") ? m[1].split(".")[1].length : 0;
     let raf = 0;
@@ -141,7 +142,7 @@ function Hero() {
           <span aria-hidden className="lg-sits-arrow">→</span>
           <span><b>Your business</b><i>email · payments · records</i></span>
         </div>
-        <ul className="lg-trust" aria-label="Why you can trust this demo"><li>Open source · Apache-2.0</li><li>Synthetic data only · no live UPI</li><li>Every number reproducible offline</li></ul>
+        <ul className="lg-trust" aria-label="Why you can trust this demo"><li>Open source · Apache-2.0</li><li>Owned ONDC/UPI-style simulators · synthetic data</li><li>Every number reproducible offline</li></ul>
         <p className="lg-fine">No sign-up: a private 7-day key is made for you. Each task labels its agent mode; all demo actions use synthetic business tools.</p>
       </div>
       <div className="lg-hero-art"><LiveRun /><span className="mono lg-hero-cap">Recorded on Cloud Run, 18 Oct 2026 · receipt chain intact</span></div>
@@ -169,7 +170,7 @@ function Numbers({ d, waking, error }: { d: DEval | null; waking: boolean; error
   );
 }
 
-const STACK = ["Gemini on Vertex AI", "Agent Development Kit", "Model Armor", "Cloud Run", "Cloud SQL", "BigQuery", "Secret Manager"];
+const STACK = ["Gemini on Vertex AI", "Agent Development Kit", "Model Armor", "Cloud Run", "Compute Engine · PostgreSQL", "BigQuery", "Secret Manager"];
 
 function Problem({ d }: { d: DEval | null }) {
   const ask = d?.arms?.["ask-every-step"];
@@ -189,17 +190,17 @@ function Problem({ d }: { d: DEval | null }) {
 }
 
 const PROOF: [string, string][] = [
-  ["0 / 239", "unsafe purchases with Assever in the live model study"],
-  ["53 / 239", "slipped past a payment-limit-only control, same proposals"],
-  ["720", "conformance cells, zero execution errors"],
-  ["1,218", "evidence bundles re-checked by an independent offline checker"],
+  ["0 unsafe", "effects across the 720-cell deployed conformance campaign (adaptive control)"],
+  ["235 / 240", "Gemini purchase proposals completed on the deployed system; 5 capacity errors retained"],
+  ["1,195", "effect bundles re-verified by an independent standard-library checker"],
+  ["93.9 ms", "core admission p95 on 4 vCPU / 8 GB"],
 ];
 
 function Proof() {
   return (
     <div className="lg-proof" aria-label="Proof you can check">
       {PROOF.map(([n, t]) => <div key={n}><b>{n}</b><span>{t}</span></div>)}
-      <p className="lg-fine">Synthetic owned services, small open models (Qwen 0.5B/0.6B), attacks authored by us. Raw records and hashes ship with the release.</p>
+      <p className="lg-fine">Owned ONDC-style commerce and UPI-style payment simulators with synthetic data; scenarios authored by us. Historical local study (Qwen 0.5B/0.6B, separate from the Gemini cohort): a payment-limit-only control allowed 53 of 239 unsafe effects, Assever allowed 0. Raw records and hashes ship with the release.</p>
     </div>
   );
 }
@@ -251,13 +252,13 @@ function Cases() {
         </ul>
       </div>
       <RealRun />
-      <div className="lg-actions" style={{ marginTop: 28 }}><Link to="/tasks?task=new" className="pill pill-primary lg-cta">Replay a purchase <span aria-hidden>→</span></Link></div>
+      <div className="lg-actions" style={{ marginTop: 28 }}><Link to="/tasks?task=new-purchase" className="pill pill-primary lg-cta">Start a purchase <span aria-hidden>→</span></Link></div>
     </Section>
   );
 }
 
 const OBJECTIONS: [string, string][] = [
-  ["“We already have payment limits.”", "In our study, limits alone let 53 of 239 bad proposals through. They were within budget and still wrong: duplicates, wrong packs, extra data."],
+  ["“We already have payment limits.”", "In our historical local study with small Qwen models, limits alone let 53 of 239 bad proposals through. They were within budget and still wrong: duplicates, wrong packs, extra data."],
   ["“Our model is smart enough.”", "Assever doesn’t rely on the model behaving. Fixed rules decide; the model only proposes. A smarter model is a better proposer, not a safer one."],
   ["“This will slow everything down.”", "Allowed actions run without asking anyone. Only exceptions reach a person, and the core check is measured, not guessed: see the evaluation."],
   ["“We can’t rip out our agent stack.”", "You don’t. Wrap your tools with the SDK; ADK, LangChain, MCP and plain Python all work."],
@@ -285,7 +286,7 @@ const ARCH: { phase: string; boxes: { n: number; title: string; body: string; ki
   { phase: "3 · Prove", boxes: [
     { n: 7, title: "One question, one action", body: "Outside the order: you approve that exact call, once, within 15 minutes", kind: "human" },
     { n: 8, title: "Gemini explains", body: "Each stopped step in plain words; the receipt cites every sentence", kind: "ai" },
-    { n: 9, title: "Sealed record", body: "Hash-chained in Cloud SQL, streamed to BigQuery for audit", kind: "rule" },
+    { n: 9, title: "Sealed record", body: "Hash-chained in PostgreSQL on a dedicated disk, copied to BigQuery for audit", kind: "rule" },
   ] },
 ];
 
@@ -408,7 +409,7 @@ const FAQ: [string, string][] = [
   ["Isn’t this just a prompt-injection filter?", "Filters guess whether text looks malicious. Assever checks whether you asked for the action. Polite attacks pass filters; they do not pass your work order."],
   ["What if Gemini is unavailable?", "Word rules draft the order instead, and anything they cannot read is left off. Decisions never depend on the model being up."],
   ["Does it slow my agents down?", "An allowed action is checked in milliseconds. Only stopped actions wait a moment for Gemini’s explanation."],
-  ["Where does my data go?", "Into Google Cloud only: Cloud SQL for records, BigQuery for analysis, Vertex AI for Gemini. Your own tools still run on your side."],
+  ["Where does my data go?", "Into our Google Cloud project only: PostgreSQL on a dedicated Persistent Disk for records, BigQuery for audit analysis, Vertex AI for Gemini. Your own tools still run on your side."],
   ["Does it work with the agent I already have?", "Yes: Google ADK, LangChain, OpenAI Agents SDK, MCP, or any Python function, through one file."],
 ];
 

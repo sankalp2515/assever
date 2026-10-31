@@ -4,8 +4,8 @@
 
 - Live: https://assever-872171487489.us-central1.run.app/
 - GitHub: https://github.com/sankalp2515/assever
-- Frontend revision: `assever-00002-d8b`, deployed 31 October 2026.
-- Frontend image: `us-central1-docker.pkg.dev/assever/assever/frontend@sha256:a76d571bfb077f3c592dd2823907ab5fb3e3a935bdc203c233cfc40217b4426b`.
+- Frontend revision: `assever-00003-jlz`, deployed 31 October 2026 (frontend fixes from the live review; see `SUBMISSION_CHECKLIST.md`). Previous: `assever-00002-d8b`.
+- Frontend image: `us-central1-docker.pkg.dev/assever/assever/frontend@sha256:995f99dbec6b3f5324d2b9c3634def69458281959d906cbc7daa1cdbf5cd92df`.
 - Backend image remains `sha256:7cfb83d1deba3a0b703038c1886bf62b842d9697fbc0d19c3512d85ec7dc574c`. APIs, database, environment, IAM and secrets were not changed for this frontend release.
 
 Claude's frontend edits were retained. The static build is served by the existing HTTPS edge; non-frontend requests continue to the same private gateway. The release ran dependency installation, TypeScript compilation and production builds. No regression suites or transaction tests were rerun for this frontend-only release; Claude should perform the verification below.

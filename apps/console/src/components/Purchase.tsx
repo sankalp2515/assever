@@ -17,13 +17,23 @@ const labels: Record<string, string> = { RICE_5KG_A: "Sona rice · 5 kg", RICE_5
 const post = <T,>(key: string, path: string, body: unknown = {}) => call<T>(path, { method: "POST", body: JSON.stringify(body) }, key);
 const path = (id: string) => `/v1/purchases/contracts/${encodeURIComponent(id)}`;
 
+function describeAttempts(attempts: unknown[]): string {
+  const lines = attempts.map((a) => {
+    const r = a as { operation_id?: string; admitted?: boolean; refused?: string; message?: string };
+    if (r.admitted && r.operation_id) return `Admitted ${r.operation_id}; waiting for provider evidence.`;
+    if (r.refused) return `Refused (${r.refused})${r.message ? `: ${r.message}` : "."}`;
+    return JSON.stringify(a);
+  });
+  return lines.length ? `Model proposal processed. ${lines.join(" ")}` : "Model proposal processed; no purchase was proposed.";
+}
+
 export function NewPurchase({ apiKey, onCreated }: { apiKey: string; onCreated: (wf: string) => void }) {
   const [words, setWords] = useState("Buy 1 x 5 kg rice and 2 x 1 L oil, up to INR 1500 including fees, from supplier A or supplier B. Share only the shop name and delivery address.");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   return <section className="card p-6 space-y-5">
     <div><p className="section-label">New task · purchase</p><h2 className="h2">Put the purchase in writing.</h2>
-      <p className="subtle text-sm">Your words stay with this work order. Review every purchase field before the buyer can act. This local workspace uses synthetic suppliers and money.</p></div>
+      <p className="subtle text-sm">Your words stay with this work order. Review every purchase field before the buyer can act. This workspace uses owned ONDC-style supplier and UPI-style payment simulators with synthetic money.</p></div>
     <form className="space-y-4" onSubmit={async e => { e.preventDefault(); setBusy(true); setError(""); try {
       const s = await post<DState>(apiKey, "/v1/delegations", { request: words, owner: "Procurement operator", workspace: "kirana" });
       await post(apiKey, `/v1/delegations/${s.workflow.id}/purchase`); onCreated(s.workflow.id);
@@ -110,9 +120,9 @@ export function PurchaseTask({ apiKey, wf, words }: { apiKey: string; wf: string
         <button className="pill" disabled={busy} onClick={() => act(() => post(apiKey, `${path(p.id)}/revoke`, { expected_epoch: p.epoch, reason: "Operator stopped new purchase admissions" }))}>Stop new purchases</button></div>
       <details className="border-t pt-4" style={{ borderColor: "var(--line)" }}><summary className="cursor-pointer text-sm font-semibold">Use a Gemini agent</summary><div className="space-y-3 pt-4">
         <p className="subtle text-sm">The deterministic buyer above needs no model. These optional models make untrusted proposals through the same purchase boundary.</p>
-        <label className="block text-sm">Model<select className="input ml-3" value={model} onChange={e => setModel(e.target.value)}><option>gemini-3.5-flash</option><option>gemini-3.1-flash-lite</option><option>qwen2.5:0.5b</option><option>qwen3:0.6b</option></select></label>
+        <label className="block text-sm">Model<select className="input ml-3" value={model} onChange={e => setModel(e.target.value)}><option>gemini-3.5-flash</option><option>gemini-3.1-flash-lite</option><option value="qwen2.5:0.5b">qwen2.5:0.5b (local Docker only)</option><option value="qwen3:0.6b">qwen3:0.6b (local Docker only)</option></select></label>
         <label className="block text-sm">Seller message (untrusted)<textarea className="input mt-2 w-full" rows={3} maxLength={4000} value={sellerText} onChange={e => setSellerText(e.target.value)} /></label>
-        <button className="pill" disabled={busy} onClick={() => act(async () => { const run = await post<{ id: string; result: { error: unknown; attempts: unknown[] } }>(apiKey, `${path(p.id)}/model-purchase`, { model_id: model, seller_text: sellerText, seed: 101 }); setNotice(run.result.error ? `Model invocation failed; no fallback. ${JSON.stringify(run.result.error)}` : `Model proposal processed: ${JSON.stringify(run.result.attempts)}`); })}>Run model proposal</button>
+        <button className="pill" disabled={busy} onClick={() => act(async () => { const run = await post<{ id: string; result: { error: unknown; attempts: unknown[] } }>(apiKey, `${path(p.id)}/model-purchase`, { model_id: model, seller_text: sellerText, seed: 101 }); setNotice(run.result.error ? `Model invocation failed; no fallback was used. ${JSON.stringify(run.result.error)}` : describeAttempts(run.result.attempts)); })}>Run model proposal</button>
       </div></details>
     </section>}
     <section className="card p-5 space-y-4"><h3 className="h3">Purchase operations</h3>

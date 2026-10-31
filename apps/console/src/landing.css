@@ -265,3 +265,6 @@
 .lg-band-inner > div > span, .lg-band-note p { color: var(--muted); }
 .lg-band b { color: var(--accent); }
 .lg-band-link { color: var(--accent); }
+
+/* keyboard focus stays visible on the dark indigo bands */
+.lg-hero :focus-visible, .lg-cta-band :focus-visible { outline-color: #F5A04A; }
