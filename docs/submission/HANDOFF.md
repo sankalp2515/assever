@@ -46,6 +46,14 @@ Extract the evidence ZIP at repository root and run `python scripts/verify_assev
 5. Fix frontend defects without changing backend code, APIs, database, environment, IAM or secrets. Report any backend issue separately. Reuse the existing backend evidence; repeat large cohorts only when a relevant change or failure justifies it.
 6. Study the official event, concept note and supplied submission template. Map each submission field and judging criterion to the actual implementation and evidence. Use the System Resilience track, with supporting Trust & Consent and Accountability. Do not claim every suggestive track.
 
+Review deployment copy against the operations document. In particular, the current authority store is PostgreSQL on a dedicated Persistent Disk; the landing stack's Cloud SQL label needs copy review. Keep historical Qwen figures explicitly distinct from Gemini results.
+
+## Deployed screenshots
+
+![Deployed hero](screenshots/hero.png)
+
+![Deployed console](screenshots/console.png)
+
 ## Submission preparation
 
 Official event: https://secureaifutureslab.com/events/india-ai-agentic-hackathon
