@@ -12,6 +12,7 @@ import { Replay } from "./pages/Replay";
 import { Setup } from "./pages/Setup";
 import { Policy } from "./pages/Policy";
 import { Review } from "./pages/Review";
+import { RedTeam } from "./pages/RedTeam";
 import "./index.css";
 import "./fonts.css";
 import "./landing.css";
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(<StrictMode><HashRouter><Lay
   {["/activity", "/decisions"].map(path => <Route key={path} path={path} element={<Decisions />} />)}
   <Route path="/connect" element={<Connect />} />
   <Route path="/evaluation" element={<Evaluation />} />
+  <Route path="/red-team" element={<RedTeam />} />
   <Route path="/replay" element={<Replay />} />
   <Route path="/setup" element={<Setup />} />
   <Route path="/policy" element={<Policy />} />

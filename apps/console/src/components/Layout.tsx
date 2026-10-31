@@ -99,6 +99,7 @@ const NAV: { label: string; icon: string; to: string; match: string[] }[] = [
   { label: "Activity", icon: "activity", to: "/activity", match: ["/activity", "/decisions", "/replay"] },
   { label: "Connect", icon: "connect", to: "/connect", match: ["/connect", "/setup", "/policy"] },
   { label: "Evaluation", icon: "eval", to: "/evaluation", match: ["/evaluation"] },
+  { label: "Red team", icon: "eval", to: "/red-team", match: ["/red-team"] },
 ];
 
 /** How many questions wait for the signed-in employee, across every task (the sidebar badge). */
