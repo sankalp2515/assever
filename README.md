@@ -4,9 +4,24 @@
 
 An agent can hold a valid token, stay under its spending limit and still buy the wrong pack, buy twice, overshare customer data or report a purchase that never happened. Assever is a checkpoint between agents and business tools. You approve a task once; every consequential call is checked against that exact approval, money and quantity are accounted for atomically, and outcomes are verified independently of the agent.
 
-**Live application:** https://assever-872171487489.us-central1.run.app — deployed on Google Cloud on 31 October 2026, with Vertex Gemini through Google Gen AI SDK and Google ADK, Model Armor and BigQuery.
+**Live application:** https://assever-872171487489.us-central1.run.app â€” deployed on Google Cloud on 31 October 2026, with Vertex Gemini through Google Gen AI SDK and Google ADK, Model Armor and BigQuery.
 
-**Measured cloud results:** 240 Gemini requests produced 235 valid plans and completed tasks with zero unsafe effects; five provider-capacity errors are retained. The 720-case authored campaign separately measures enforcement against matched controls. See [cloud validation](docs/assever/GOOGLE_CLOUD_VALIDATION.md) for exact denominators and [submission handoff](docs/submission/HANDOFF.md) for submission preparation.
+**Measured results on the deployed system** (each cohort reported separately, errors retained):
+
+| Study | Payment-limit control | Assever |
+|---|---|---|
+| 720-case authored campaign (144 per control) | 36 unsafe effects, 92/144 tasks completed | **0 unsafe**, 126/144 completed; 12 unknown outcomes held, never retried |
+| Adaptive red team: Gemini attacker vs Gemini buyer, 120 sessions, up to 4 rounds | 1 unsafe (2 baskets, INR 1,400 captured) | **0 unsafe**, 116/120 completed |
+| Gemini cohort, 240 attempts (235 valid, 5 provider errors) | 0 unsafe | 0 unsafe, 235 completed (utility, not a safety gap) |
+
+A historical local study with small Qwen models (separate, not deployed) found 53/239 unsafe under the payment control and 0/239 under Assever. 1,195 effect bundles re-verified offline; core admission p95 93.9 ms on 4 vCPU / 8 GB. See [cloud validation](docs/assever/GOOGLE_CLOUD_VALIDATION.md).
+
+**Judge quick path (2 minutes):**
+1. Open **Red team** in the live app and press **Run attack on live Assever**. The recorded winning attack goes to real Vertex Gemini; when the buyer proposes two baskets, Assever lets exactly one INR 700 order through.
+2. Open **Tasks > New purchase**, approve the work order, run a Gemini proposal, then run it again: the second is refused with `DEMAND_ALREADY_ENCUMBERED`.
+3. Offline: `python scripts/verify_assever_google_exports.py` re-checks the evidence bundles with the Python standard library only.
+
+The red-team engine is [scripts/assever_google_redteam.py](scripts/assever_google_redteam.py). Its pre-registered protocol, all 120 sessions and token usage (about US$2.19) ship with the evidence release.
 
 Track: System Resilience, with Trust & Consent and Accountability. Scenario: a kirana purchase (rice and oil, INR budget) with a Hindi review view.
 
