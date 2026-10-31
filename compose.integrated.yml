@@ -1,0 +1,167 @@
+name: assever-integrated
+x-image: &image
+  image: assever-integrated:local
+  init: true
+  restart: unless-stopped
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+x-purchase: &purchase
+  DATABASE_URL: postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal
+  PURCHASE_ENABLED: '1'
+  INTEGRATED_REQUIRE_WORKFLOW: '1'
+  SINK_URL: http://effects:8001
+  SERVICE_KEY: synthetic-integrated-service-local-only
+  ISSUER_KEY_V1: synthetic-integrated-issuer-local-only
+  LAB_ENABLED: '1'
+  OLLAMA_URL: http://models:11434
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    environment:
+      POSTGRES_USER: localdbadmin
+      POSTGRES_PASSWORD: synthetic-db-admin-local-only
+      POSTGRES_DB: intentseal
+    volumes:
+      - integrated-pg:/var/lib/postgresql/data
+      - ./deploy/init-local-purchase.sql:/docker-entrypoint-initdb.d/01-purchase.sql:ro
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -h 127.0.0.1 -U localdbadmin -d intentseal]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    networks: [application, effects]
+    mem_limit: 512m
+  gateway:
+    <<: *image
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_KEY: local-public-key
+    environment:
+      <<: *purchase
+      PORT: '8000'
+      PURCHASE_POOL_MIN: '20'
+      INTENTSEAL_DATABASE_URL: postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal
+      INTENTSEAL_API_KEYS: local:local-project-key:project,localadmin:local-admin-key:admin,local:local-agent-key:agent
+      INTENTSEAL_PUBLIC_KEY: local-public-key
+      INTENTSEAL_DELEGATE_SECRET: synthetic-integrated-handoff-local-only
+      INTENTSEAL_TRIAL_KEYS: '1'
+      INTENTSEAL_TRIAL_PER_HOUR: '500'
+      INTENTSEAL_INVESTIGATOR_AUTO: '0'
+      INTENTSEAL_PUBLIC_RATE_LIMIT_PER_MIN: '300'
+      INTENTSEAL_RATE_LIMIT_PER_MIN: '2000'
+      OBSERVER_KEY: synthetic-integrated-observer-local-only
+      CALLBACK_KEY: synthetic-integrated-callback-local-only
+      LAB_URL: http://evaluator:8002
+      LAB_KEY: synthetic-integrated-evaluator-local-only
+      OLLAMA_URL: http://models:11434
+    ports: ['127.0.0.1:8000:8000']
+    volumes: [integrated-data:/data]
+    read_only: true
+    tmpfs: [/tmp]
+    depends_on:
+      postgres: {condition: service_healthy}
+      effects: {condition: service_healthy}
+    mem_limit: 4g
+    healthcheck:
+      start_period: 5m
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks: [application, effects]
+  worker:
+    <<: *image
+    command: [python, -m, intentseal_core.purchase.worker]
+    environment:
+      <<: *purchase
+      DISPATCH_KEY: synthetic-integrated-dispatch-local-only
+    read_only: true
+    tmpfs: [/tmp]
+    depends_on:
+      gateway: {condition: service_healthy}
+    mem_limit: 512m
+    networks: [application, effects]
+    healthcheck:
+      test: [CMD, python, -c, "import pathlib,time; p=pathlib.Path('/tmp/assever-worker-heartbeat'); assert p.exists() and time.time()-p.stat().st_mtime<120"]
+      interval: 10s
+      timeout: 3s
+      start_period: 30s
+      retries: 3
+  evaluator:
+    <<: *image
+    command: [uvicorn, intentseal_gateway.purchase_evaluation:app, --host, 0.0.0.0, --port, '8002', --no-access-log]
+    environment:
+      <<: *purchase
+      LAB_KEY: synthetic-integrated-evaluator-local-only
+      OBSERVER_KEY: synthetic-integrated-observer-local-only
+      CALLBACK_KEY: synthetic-integrated-callback-local-only
+      DISPATCH_KEY: synthetic-integrated-dispatch-local-only
+    read_only: true
+    tmpfs: [/tmp]
+    depends_on:
+      effects: {condition: service_healthy}
+    mem_limit: 1g
+    networks: [application, effects]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8002/readyz')"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  models:
+    profiles: [models]
+    image: ollama/ollama:0.40.13
+    volumes: [integrated-models:/root/.ollama]
+    mem_limit: 3g
+    cpus: 3
+    networks: [application]
+    security_opt: [no-new-privileges:true]
+  agents:
+    profiles: [agents]
+    build: ./examples/agent-team
+    image: assever-agent-team:local
+    environment:
+      ABIDE_URL: http://gateway:8000
+      ABIDE_KEY: local-agent-key
+      ABIDE_CONSOLE: http://localhost:8000
+      HIJACKED: '1'
+    depends_on:
+      gateway: {condition: service_healthy}
+    networks: [application]
+    mem_limit: 256m
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+  effects:
+    <<: *image
+    command: [uvicorn, intentseal_core.purchase.sink:app, --host, 0.0.0.0, --port, '8001', --no-access-log]
+    environment:
+      DATABASE_URL: postgresql://purchase_effects:synthetic-effects-local-only@postgres:5432/purchase_effects
+      SERVICE_MODE: sink
+      PURCHASE_POOL_MIN: '8'
+      DISPATCH_KEY: synthetic-integrated-dispatch-local-only
+      SERVICE_KEY: synthetic-integrated-service-local-only
+      OBSERVER_KEY: synthetic-integrated-observer-local-only
+      LAB_ENABLED: '1'
+    read_only: true
+    tmpfs: [/tmp]
+    depends_on:
+      postgres: {condition: service_healthy}
+    mem_limit: 512m
+    networks: [effects]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8001/health/ready')"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+volumes:
+  integrated-pg:
+  integrated-data:
+  integrated-models:
+networks:
+  application:
+    ipam:
+      config: [{subnet: 10.203.94.0/24}]
+  effects:
+    internal: true
+    ipam:
+      config: [{subnet: 10.203.95.0/24}]

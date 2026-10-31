@@ -1,0 +1,3 @@
+name: assever-integrated
+include:
+  - compose.integrated.yml

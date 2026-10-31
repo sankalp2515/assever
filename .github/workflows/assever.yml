@@ -1,0 +1,33 @@
+name: Assever integrated product
+on: [push, pull_request]
+jobs:
+  purchase-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check Python syntax and undefined names
+        run: |
+          pip install ruff==0.16.10
+          ruff check packages/core/intentseal_core/purchase services/gateway/intentseal_gateway/purchase_api.py services/gateway/intentseal_gateway/purchase_evaluation.py tests/purchase --select F,E9
+          python -m compileall -q packages/core/intentseal_core/purchase
+      - name: Build and start isolated stack
+        run: docker compose -f compose.integrated.yml up --build --wait -d
+      - name: PostgreSQL, concurrency, authority, recovery and evidence tests
+        run: docker compose -f compose.integrated.yml exec -T evaluator python -m pytest tests/purchase -q -o cache_dir=/tmp/pytest-cache
+      - name: Original system regression suite
+        run: >-
+          docker compose -f compose.integrated.yml exec -T -e PURCHASE_ENABLED=0
+          -e INTENTSEAL_DATABASE_URL= -e INTENTSEAL_DB_PATH=:memory: -e INTENTSEAL_STORE_PREVIEWS=1
+          gateway python -c "import os; os.environ['INTENTSEAL_TEST_DATABASE_URL']=os.environ['DATABASE_URL']; import pytest; raise SystemExit(pytest.main(['tests','--ignore=tests/purchase','-q','-o','cache_dir=/tmp/pytest-cache']))"
+      - name: Freeze schema and local imports
+        run: docker compose -f compose.integrated.yml exec -T gateway python -c "import json,urllib.request; s=json.load(urllib.request.urlopen('http://localhost:8000/openapi.json')); assert s['info']['title']=='Assever Gateway API'; assert '/v1/delegations' in s['paths']; assert '/v1/purchases/proposals' in s['paths']"
+      - name: Logs on failure
+        if: failure()
+        run: docker compose -f compose.integrated.yml logs --tail 100
+      - name: Stop
+        if: always()
+        run: docker compose -f compose.integrated.yml down

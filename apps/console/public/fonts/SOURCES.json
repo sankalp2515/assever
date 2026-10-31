@@ -1,0 +1,30 @@
+{
+  "stylesheet": "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Newsreader:ital,wght@1,400&family=Fragment+Mono&display=swap",
+  "fonts": [
+    {
+      "source": "https://fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnN4Q.ttf",
+      "file": "d3cb901af65bf837.ttf"
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/newsreader/v26/cY9kfjOCX1hbuyalUrK439vogqC9yFZCYg7oRZaLP4obnf7fTXglsMwoT-ZA.ttf",
+      "file": "289d2aa8e0ed6731.ttf"
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNEMEATw.ttf",
+      "file": "d8a43d70c8bf677c.ttf"
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNIsEATw.ttf",
+      "file": "410f892903ba2663.ttf"
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMN_MYATw.ttf",
+      "file": "1d9e75eb4d02f27b.ttf"
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNxcYATw.ttf",
+      "file": "829d99d3bf145a51.ttf"
+    }
+  ],
+  "license": "SIL Open Font License; see Google Fonts upstream family repositories"
+}

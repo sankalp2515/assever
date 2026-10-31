@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2240" viewBox="0 0 3600 2240" role="img" aria-labelledby="title desc">
+<title id="title">Assever: agent governance and purchase integrity</title>
+<desc id="desc">Deployed Google Cloud architecture retaining Assever's console, gateway, core and SDK boundaries. Extend annotations identify upgrades to existing components. New annotations identify purchase accounting and projections inside the core, a separate execution worker, and isolated evaluation infrastructure. See current release status for local verification and remaining qualification gates.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1D5E46"/></marker><marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#586475"/></marker></defs>
+<style>text{font-family:'Segoe UI',Arial,sans-serif;fill:#101826}.mono{font-family:Consolas,'Courier New',monospace}.section{font-weight:700;letter-spacing:2px;fill:#586475}</style>
+<rect width="3600" height="2240" fill="#F3F4F1"/>
+<text x="48" y="61" font-size="43" font-weight="700" style="fill:#1D5E46" class="">Assever</text>
+<text x="248" y="60" font-size="31" font-weight="600" style="fill:#101826" class="">Assever · deployed Google Cloud architecture</text>
+<text x="48" y="105" font-size="26" font-weight="400" style="fill:#586475" class="">Same product, console, gateway, core and SDK. Purchase integrity becomes an additional governed workflow.</text>
+<text x="48" y="155" font-size="23" font-weight="600" style="fill:#1D5E46" class="mono">KEEP · existing boundary / capability</text>
+<text x="670" y="155" font-size="23" font-weight="600" style="fill:#8A5D00" class="mono">EXTEND · modify the existing component</text>
+<text x="1375" y="155" font-size="23" font-weight="600" style="fill:#1855D8" class="mono">NEW · integrate the added capability</text>
+<text x="2380" y="155" font-size="22" font-weight="400" style="fill:#586475" class="mono">GOOGLE CLOUD · HTTPS edge + private Docker runtime</text>
+<rect x="740" y="205" width="2140" height="1680" rx="35" fill="#F0F4F6" stroke="#98B5FF" stroke-width="4" stroke-dasharray="12 10"/>
+<text x="788" y="237" font-size="25" font-weight="700" style="fill:#487BEB" class="">GOOGLE CLOUD · existing service boundaries retained</text>
+<text x="48" y="245" font-size="27" font-weight="400" style="fill:#101826" class="section">PEOPLE · SAME CONSOLE</text>
+<text x="2935" y="245" font-size="27" font-weight="400" style="fill:#101826" class="section">YOUR BUSINESS</text>
+<rect x="790" y="269" width="1390" height="1575" rx="30" fill="#FFFFFF" stroke="#1D5E46" stroke-width="4"/>
+<text x="825" y="319" font-size="34" font-weight="700" style="fill:#101826" class="">Assever checkpoint · Assever gateway</text>
+<text x="825" y="353" font-size="23" font-weight="400" style="fill:#1D5E46" class="mono">services/gateway + packages/core · one authority boundary</text>
+<text x="2230" y="290" font-size="24" font-weight="400" style="fill:#101826" class="section">MANAGED / PRIVATE SERVICES</text>
+<rect x="48" y="280" width="580" height="225" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="329" font-size="31" font-weight="700" style="fill:#101826" class="">Employee</text>
+<rect x="486" y="297" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="497" y="320" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="78" y="367" font-size="23" font-weight="400" style="fill:#586475" class="">Keeps Tasks, Needs you and Receipts.</text>
+<text x="78" y="398" font-size="23" font-weight="400" style="fill:#586475" class="">Reviews one work order; sees approved</text>
+<text x="78" y="429" font-size="23" font-weight="400" style="fill:#586475" class="">scope, pending obligations and verified</text>
+<text x="78" y="460" font-size="23" font-weight="400" style="fill:#586475" class="">outcomes in the same task.</text>
+<text x="78" y="483" font-size="20" font-weight="400" style="fill:#1D5E46" class="">Human confirms · agents never approve</text>
+<rect x="48" y="527" width="580" height="195" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="576" font-size="31" font-weight="700" style="fill:#101826" class="">Security team</text>
+<rect x="486" y="544" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="497" y="567" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="78" y="614" font-size="21" font-weight="400" style="fill:#586475" class="">Keeps Activity, review, replay and Evaluation.</text>
+<text x="78" y="643" font-size="21" font-weight="400" style="fill:#586475" class="">Adds linked order/payment/disclosure evidence</text>
+<text x="78" y="672" font-size="21" font-weight="400" style="fill:#586475" class="">and export verification.</text>
+<text x="48" y="790" font-size="25" font-weight="400" style="fill:#101826" class="section">AI AGENTS · OUTSIDE CHECKPOINT</text>
+<rect x="48" y="823" width="580" height="205" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="872" font-size="27.207977207977205" font-weight="700" style="fill:#101826" class="">Gemini agents · Google ADK</text>
+<rect x="486" y="840" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="497" y="863" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="78" y="910" font-size="23" font-weight="400" style="fill:#586475" class="">Retain Reader → Resolver team and live</text>
+<text x="78" y="941" font-size="23" font-weight="400" style="fill:#586475" class="">agents. Procurement adds planner / buyer</text>
+<text x="78" y="972" font-size="23" font-weight="400" style="fill:#586475" class="">roles; alternatives stay within the</text>
+<text x="78" y="1003" font-size="23" font-weight="400" style="fill:#586475" class="">reviewed work order.</text>
+<rect x="48" y="1050" width="580" height="205" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="1099" font-size="24.393358876117496" font-weight="700" style="fill:#101826" class="">Your agents · same SDK / REST</text>
+<rect x="486" y="1067" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="497" y="1090" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="78" y="1137" font-size="20" font-weight="400" style="fill:#586475" class="">Keep ADK callbacks and remote clients. A purchase</text>
+<text x="78" y="1165" font-size="20" font-weight="400" style="fill:#586475" class="">proposal returns an operation ID; callers poll</text>
+<text x="78" y="1193" font-size="20" font-weight="400" style="fill:#586475" class="">status instead of reporting payment success.</text>
+<text x="78" y="1233" font-size="20" font-weight="400" style="fill:#1D5E46" class="">Agent key: can propose, never approve</text>
+<rect x="48" y="1277" width="580" height="180" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="1326" font-size="31" font-weight="700" style="fill:#101826" class="">Untrusted content</text>
+<rect x="516" y="1294" width="88" height="31" rx="6" fill="#E5F0EA"/>
+<text x="527" y="1317" font-size="19" font-weight="700" style="fill:#1D5E46" class="mono">KEEP</text>
+<text x="78" y="1364" font-size="23" font-weight="400" style="fill:#586475" class="">Tickets, PDFs, invoices, seller messages,</text>
+<text x="78" y="1395" font-size="23" font-weight="400" style="fill:#586475" class="">memory and callbacks remain data. None can</text>
+<text x="78" y="1426" font-size="23" font-weight="400" style="fill:#586475" class="">amend the employee’s work order.</text>
+<rect x="48" y="1480" width="580" height="240" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="1529" font-size="24.393358876117496" font-weight="700" style="fill:#101826" class="">Same information architecture</text>
+<rect x="486" y="1497" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="497" y="1520" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="78" y="1567" font-size="22" font-weight="400" style="fill:#586475" class="">Tasks: purchase detail within a work order.</text>
+<text x="78" y="1597" font-size="22" font-weight="400" style="fill:#586475" class="">Needs you: exact exceptions. Activity:</text>
+<text x="78" y="1627" font-size="22" font-weight="400" style="fill:#586475" class="">effects and investigation. Connect: existing</text>
+<text x="78" y="1657" font-size="22" font-weight="400" style="fill:#586475" class="">agents, businesses and adapter setup.</text>
+<text x="78" y="1698" font-size="20" font-weight="400" style="fill:#1D5E46" class="">Same design tokens, stamps and navigation</text>
+<rect x="825" y="390" width="1320" height="178" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<circle cx="825" cy="433" r="26" fill="#101826"/>
+<text x="817" y="443" font-size="27" font-weight="700" style="fill:#FFFFFF" class="">1</text>
+<text x="855" y="439" font-size="31" font-weight="700" style="fill:#101826" class="">Work-order compiler + grounded review</text>
+<rect x="2003" y="407" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2014" y="430" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="855" y="477" font-size="25" font-weight="400" style="fill:#586475" class="">Retain grounded MAY / NEVER clauses and human confirmation. Add a typed purchase annex: demand</text>
+<text x="855" y="510" font-size="25" font-weight="400" style="fill:#586475" class="">IDs, units, alternatives, suppliers, all-in cap, delivery fields and expiry.</text>
+<text x="855" y="546" font-size="20" font-weight="400" style="fill:#1D5E46" class="">One workflow ID · one owner · one reviewed contract version</text>
+<rect x="825" y="585" width="1320" height="145" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<circle cx="825" cy="628" r="26" fill="#101826"/>
+<text x="817" y="638" font-size="27" font-weight="700" style="fill:#FFFFFF" class="">2</text>
+<text x="855" y="634" font-size="31" font-weight="700" style="fill:#101826" class="">Read screening</text>
+<rect x="2033" y="602" width="88" height="31" rx="6" fill="#E5F0EA"/>
+<text x="2044" y="625" font-size="19" font-weight="700" style="fill:#1D5E46" class="mono">KEEP</text>
+<text x="855" y="672" font-size="25" font-weight="400" style="fill:#586475" class="">Keep rules, local classifier, provenance/taint tracking and optional Model Armor. Purchase</text>
+<text x="855" y="705" font-size="25" font-weight="400" style="fill:#586475" class="">content passes through the same read boundary.</text>
+<rect x="825" y="747" width="1320" height="145" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<circle cx="825" cy="790" r="26" fill="#101826"/>
+<text x="817" y="800" font-size="27" font-weight="700" style="fill:#FFFFFF" class="">3</text>
+<text x="855" y="796" font-size="31" font-weight="700" style="fill:#101826" class="">Sealed handoffs</text>
+<rect x="2003" y="764" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2014" y="787" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="855" y="834" font-size="25" font-weight="400" style="fill:#586475" class="">Keep HMAC-sealed workflow provenance. Add recipient/audience/expiry-bound, attenuated grants;</text>
+<text x="855" y="867" font-size="25" font-weight="400" style="fill:#586475" class="">child agents share the same root quantities and budget.</text>
+<rect x="825" y="909" width="1320" height="213" rx="22" fill="#E5F0EA" stroke="#1D5E46" stroke-width="3"/>
+<circle cx="825" cy="952" r="26" fill="#1D5E46"/>
+<text x="817" y="962" font-size="27" font-weight="700" style="fill:#FFFFFF" class="">4</text>
+<text x="855" y="958" font-size="31" font-weight="700" style="fill:#101826" class="">Action gate · existing deterministic enforcement point</text>
+<rect x="2003" y="926" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2014" y="949" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="855" y="996" font-size="25" font-weight="400" style="fill:#586475" class="">Keep recipient, record, field and content-tracing checks. Purchase calls additionally validate</text>
+<text x="855" y="1029" font-size="25" font-weight="400" style="fill:#586475" class="">the final checkout and atomically reserve root money, quantities and purchase count before</text>
+<text x="855" y="1062" font-size="25" font-weight="400" style="fill:#586475" class="">queueing execution.</text>
+<text x="855" y="1100" font-size="20" font-weight="400" style="fill:#1D5E46" class="">Read/draft stay local · STOPPED: refused · WAITS: approval · ADMITTED: queued, not yet RAN</text>
+<rect x="825" y="1139" width="1320" height="155" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<circle cx="825" cy="1182" r="26" fill="#101826"/>
+<text x="817" y="1192" font-size="27" font-weight="700" style="fill:#FFFFFF" class="">5</text>
+<text x="855" y="1188" font-size="31" font-weight="700" style="fill:#101826" class="">Bound approvals + lifecycle</text>
+<rect x="2003" y="1156" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2014" y="1179" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="855" y="1226" font-size="25" font-weight="400" style="fill:#586475" class="">Keep owner-only exact, single-use, expiring approvals. Bind purchase exceptions to old/new scope</text>
+<text x="855" y="1259" font-size="25" font-weight="400" style="fill:#586475" class="">and checkout bytes. Narrowing or revocation changes the root epoch for future admissions.</text>
+<rect x="825" y="1311" width="1320" height="174" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<circle cx="825" cy="1354" r="26" fill="#101826"/>
+<text x="817" y="1364" font-size="27" font-weight="700" style="fill:#FFFFFF" class="">6</text>
+<text x="855" y="1360" font-size="31" font-weight="700" style="fill:#101826" class="">Proof · existing receipts + actual outcomes</text>
+<rect x="2003" y="1328" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2014" y="1351" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="855" y="1398" font-size="25" font-weight="400" style="fill:#586475" class="">Keep chained receipts, source-linked explanations and citation-checked reports. Link durable</text>
+<text x="855" y="1431" font-size="25" font-weight="400" style="fill:#586475" class="">operation IDs to provider observations; unknown stays unknown until supported by evidence.</text>
+<text x="855" y="1463" font-size="20" font-weight="400" style="fill:#1D5E46" class="">RAN only after a verified effect · no agent self-attestation of payment success</text>
+<rect x="825" y="1507" width="640" height="278" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="855" y="1556" font-size="31" font-weight="700" style="fill:#101826" class="">N1 · Root entitlement ledger</text>
+<rect x="1353" y="1524" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="1364" y="1547" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="855" y="1594" font-size="23" font-weight="400" style="fill:#586475" class="">Core module, stored in the existing</text>
+<text x="855" y="1625" font-size="23" font-weight="400" style="fill:#586475" class="">PostgreSQL service. Integer money / units;</text>
+<text x="855" y="1656" font-size="23" font-weight="400" style="fill:#586475" class="">shared demand IDs; locked admission; disjoint</text>
+<text x="855" y="1687" font-size="23" font-weight="400" style="fill:#586475" class="">reserved / unknown / captured / closed buckets.</text>
+<text x="855" y="1763" font-size="20" font-weight="400" style="fill:#1D5E46" class="">One transaction: root checks + reservation + outbox</text>
+<rect x="1485" y="1507" width="660" height="278" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="1515" y="1556" font-size="31" font-weight="700" style="fill:#101826" class="">N2 · Consequence projection</text>
+<rect x="2033" y="1524" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="2044" y="1547" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="1515" y="1594" font-size="23" font-weight="400" style="fill:#586475" class="">Typed core / adapter interface. Binds final</text>
+<text x="1515" y="1625" font-size="23" font-weight="400" style="fill:#586475" class="">quote, seller/payee, quantities, fees,</text>
+<text x="1515" y="1656" font-size="23" font-weight="400" style="fill:#586475" class="">disclosures, adapter version and exact request</text>
+<text x="1515" y="1687" font-size="23" font-weight="400" style="fill:#586475" class="">digest. Unsupported effects are refused.</text>
+<text x="1515" y="1763" font-size="20" font-weight="400" style="fill:#1D5E46" class="">An LLM proposes; deterministic code decides</text>
+<rect x="2230" y="330" width="590" height="180" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2260" y="379" font-size="31" font-weight="700" style="fill:#101826" class="">Gemini · Gen AI SDK / ADK</text>
+<rect x="2708" y="347" width="88" height="31" rx="6" fill="#E5F0EA"/>
+<text x="2719" y="370" font-size="19" font-weight="700" style="fill:#1D5E46" class="mono">KEEP</text>
+<text x="2260" y="417" font-size="23" font-weight="400" style="fill:#586475" class="">Vertex Gemini via runtime identity. Gen AI SDK</text>
+<text x="2260" y="448" font-size="23" font-weight="400" style="fill:#586475" class="">and Google ADK drive live agents. Model</text>
+<text x="2260" y="479" font-size="23" font-weight="400" style="fill:#586475" class="">outputs never grant authority or settle money.</text>
+<rect x="2230" y="530" width="590" height="145" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2260" y="579" font-size="31" font-weight="700" style="fill:#101826" class="">Model Armor · connected</text>
+<rect x="2708" y="547" width="88" height="31" rx="6" fill="#E5F0EA"/>
+<text x="2719" y="570" font-size="19" font-weight="700" style="fill:#1D5E46" class="mono">KEEP</text>
+<text x="2260" y="617" font-size="21" font-weight="400" style="fill:#586475" class="">Retain optional screening. Content detection</text>
+<text x="2260" y="646" font-size="21" font-weight="400" style="fill:#586475" class="">adds a layer; enforcement still checks actions.</text>
+<rect x="2230" y="695" width="590" height="200" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2260" y="744" font-size="29.037037037037038" font-weight="700" style="fill:#101826" class="">PostgreSQL · same service</text>
+<rect x="2678" y="712" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2689" y="735" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="2260" y="782" font-size="23" font-weight="400" style="fill:#586475" class="">Retain work orders, approvals and receipts.</text>
+<text x="2260" y="813" font-size="23" font-weight="400" style="fill:#586475" class="">Add purchase roots, grants, reservations,</text>
+<text x="2260" y="844" font-size="23" font-weight="400" style="fill:#586475" class="">operation bindings and transactional outbox</text>
+<text x="2260" y="875" font-size="23" font-weight="400" style="fill:#586475" class="">via versioned migrations.</text>
+<rect x="2230" y="925" width="590" height="275" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2260" y="974" font-size="31" font-weight="700" style="fill:#101826" class="">N3 · Execution / recovery</text>
+<rect x="2708" y="942" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="2719" y="965" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2260" y="1012" font-size="23" font-weight="400" style="fill:#586475" class="">Private worker container; same public gateway.</text>
+<text x="2260" y="1043" font-size="23" font-weight="400" style="fill:#586475" class="">Claims the durable outbox, uses stable</text>
+<text x="2260" y="1074" font-size="23" font-weight="400" style="fill:#586475" class="">operation IDs and provider credentials,</text>
+<text x="2260" y="1105" font-size="23" font-weight="400" style="fill:#586475" class="">reconciles before any retry; preserves</text>
+<text x="2260" y="1136" font-size="23" font-weight="400" style="fill:#586475" class="">unknown exposure.</text>
+<text x="2260" y="1178" font-size="19.23076923076923" font-weight="400" style="fill:#1D5E46" class="">Worker reaches participating tools · private network</text>
+<rect x="2230" y="1222" width="590" height="205" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2260" y="1271" font-size="25.925925925925924" font-weight="700" style="fill:#101826" class="">Audit · IAM · build pipeline</text>
+<rect x="2678" y="1239" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="2689" y="1262" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="2260" y="1309" font-size="23" font-weight="400" style="fill:#586475" class="">BigQuery receipts, Secret Manager / runtime</text>
+<text x="2260" y="1340" font-size="23" font-weight="400" style="fill:#586475" class="">IAM and digest-pinned application images.</text>
+<text x="2260" y="1371" font-size="23" font-weight="400" style="fill:#586475" class="">Effect joins, private worker roles</text>
+<text x="2260" y="1402" font-size="23" font-weight="400" style="fill:#586475" class="">and health/queue metrics.</text>
+<rect x="2230" y="1449" width="590" height="330" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2260" y="1498" font-size="31" font-weight="700" style="fill:#101826" class="">N4 · Independent verifier</text>
+<rect x="2708" y="1466" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="2719" y="1489" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2260" y="1536" font-size="23" font-weight="400" style="fill:#586475" class="">Isolated evaluator reads read-only provider</text>
+<text x="2260" y="1567" font-size="23" font-weight="400" style="fill:#586475" class="">observations and approved scope.</text>
+<text x="2260" y="1598" font-size="23" font-weight="400" style="fill:#586475" class="">Reconstructs money, units and disclosure</text>
+<text x="2260" y="1629" font-size="23" font-weight="400" style="fill:#586475" class="">effects; exports a standard-library checker.</text>
+<text x="2260" y="1660" font-size="23" font-weight="400" style="fill:#586475" class="">Extend the existing Evaluation surface with</text>
+<text x="2260" y="1691" font-size="23" font-weight="400" style="fill:#586475" class="">the shared corpus and matched controls.</text>
+<text x="2260" y="1757" font-size="18.51851851851852" font-weight="400" style="fill:#1D5E46" class="">Provider truth for evaluation ≠ authority for recovery</text>
+<rect x="2935" y="280" width="615" height="260" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2965" y="329" font-size="22.712418300653596" font-weight="700" style="fill:#101826" class="">Business tools · same integrations</text>
+<rect x="3408" y="297" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="3419" y="320" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="2965" y="367" font-size="23" font-weight="400" style="fill:#586475" class="">Retain email, refunds, invoices, records and</text>
+<text x="2965" y="398" font-size="23" font-weight="400" style="fill:#586475" class="">files. Purchase-capable adapters gain a</text>
+<text x="2965" y="429" font-size="23" font-weight="400" style="fill:#586475" class="">private executor path and typed consequence</text>
+<text x="2965" y="460" font-size="23" font-weight="400" style="fill:#586475" class="">projection. Only the executor holds</text>
+<text x="2965" y="491" font-size="23" font-weight="400" style="fill:#586475" class="">purchase/provider credentials.</text>
+<text x="2965" y="518" font-size="20" font-weight="400" style="fill:#1D5E46" class="">No direct agent route to consequential purchase APIs</text>
+<rect x="2935" y="595" width="615" height="240" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2965" y="644" font-size="29.563492063492063" font-weight="700" style="fill:#101826" class="">N5 · Owned DPI test adapters</text>
+<rect x="3438" y="612" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="3449" y="635" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2965" y="682" font-size="22" font-weight="400" style="fill:#586475" class="">Separate synthetic commerce, payment and</text>
+<text x="2965" y="712" font-size="22" font-weight="400" style="fill:#586475" class="">disclosure records. ONDC/Beckn-inspired message</text>
+<text x="2965" y="742" font-size="22" font-weight="400" style="fill:#586475" class="">subset; UPI-style INR effects. Queryable,</text>
+<text x="2965" y="772" font-size="22" font-weight="400" style="fill:#586475" class="">deduplicating and opaque provider profiles.</text>
+<text x="2965" y="813" font-size="19.039451114922812" font-weight="400" style="fill:#1D5E46" class="">Test service only · no live DPI / money / personal data</text>
+<rect x="2935" y="857" width="615" height="190" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2965" y="906" font-size="31" font-weight="700" style="fill:#101826" class="">Business policy</text>
+<rect x="3408" y="874" width="118" height="31" rx="6" fill="#FBF3DF"/>
+<text x="3419" y="897" font-size="19" font-weight="700" style="fill:#8A5D00" class="mono">EXTEND</text>
+<text x="2965" y="944" font-size="21" font-weight="400" style="fill:#586475" class="">Keep tools, contacts, records and company rules.</text>
+<text x="2965" y="973" font-size="21" font-weight="400" style="fill:#586475" class="">Add trusted catalog units, merchant/payee mapping,</text>
+<text x="2965" y="1002" font-size="21" font-weight="400" style="fill:#586475" class="">allowed delivery fields and adapter capabilities.</text>
+<text x="2935" y="1110" font-size="25" font-weight="400" style="fill:#101826" class="section">PURCHASE GUARANTEES</text>
+<rect x="2935" y="1140" width="615" height="180" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2965" y="1189" font-size="30.658436213991767" font-weight="700" style="fill:#101826" class="">Preserve the whole purchase</text>
+<rect x="3438" y="1157" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="3449" y="1180" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2965" y="1227" font-size="23" font-weight="400" style="fill:#586475" class="">Two ₹700 baskets fit ₹1,500. Shared demand</text>
+<text x="2965" y="1258" font-size="23" font-weight="400" style="fill:#586475" class="">accounting admits one approved basket, not two</text>
+<text x="2965" y="1289" font-size="23" font-weight="400" style="fill:#586475" class="">purchases with different request IDs.</text>
+<rect x="2935" y="1342" width="615" height="180" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2965" y="1391" font-size="31" font-weight="700" style="fill:#101826" class="">Keep useful work moving</text>
+<rect x="3438" y="1359" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="3449" y="1382" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2965" y="1429" font-size="20" font-weight="400" style="fill:#586475" class="">Allow reviewed alternatives when stock changes. A</text>
+<text x="2965" y="1457" font-size="20" font-weight="400" style="fill:#586475" class="">hidden instruction still cannot change destination,</text>
+<text x="2965" y="1485" font-size="20" font-weight="400" style="fill:#586475" class="">units, supplier scope or data sharing.</text>
+<rect x="2935" y="1544" width="615" height="235" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2965" y="1593" font-size="25.084175084175083" font-weight="700" style="fill:#101826" class="">Recover without inventing success</text>
+<rect x="3438" y="1561" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="3449" y="1584" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2965" y="1631" font-size="23" font-weight="400" style="fill:#586475" class="">A lost response does not free the budget or</text>
+<text x="2965" y="1662" font-size="23" font-weight="400" style="fill:#586475" class="">trigger a blind resend. Reconcile actual</text>
+<text x="2965" y="1693" font-size="23" font-weight="400" style="fill:#586475" class="">effects; retain unknown exposure for opaque</text>
+<text x="2965" y="1724" font-size="23" font-weight="400" style="fill:#586475" class="">providers.</text>
+<text x="2965" y="1757" font-size="20" font-weight="400" style="fill:#1D5E46" class="">Revocation stops new admissions, not past effects</text>
+<path d="M633 385H700V478H816" fill="none" stroke="#586475" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#gray)"/>
+<text x="643" y="366" font-size="21" font-weight="400" style="fill:#586475" class="mono">words + review</text>
+<path d="M633 927H690V1015H816" fill="none" stroke="#1D5E46" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<text x="640" y="995" font-size="21" font-weight="400" style="fill:#1D5E46" class="mono">tool proposal</text>
+<path d="M633 1175H690V1015" fill="none" stroke="#1D5E46" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<path d="M633 1365H658V657H816" fill="none" stroke="#586475" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#gray)"/>
+<text x="650" y="805" font-size="20" font-weight="400" style="fill:#586475" class="mono">read</text>
+<path d="M2145 1008H2221" fill="none" stroke="#1D5E46" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<text x="2152" y="985" font-size="21" font-weight="400" style="fill:#1D5E46" class="mono">outbox</text>
+<path d="M2820 1030H2895V408H2926" fill="none" stroke="#1D5E46" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"  marker-end="url(#arrow)"/>
+<text x="2840" y="570" font-size="20" font-weight="400" style="fill:#1D5E46" class="mono">effects</text>
+<path d="M2927 720H2895V1610H2829" fill="none" stroke="#586475" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#gray)"/>
+<text x="2840" y="1582" font-size="18" font-weight="400" style="fill:#586475" class="mono">observe</text>
+<path d="M2230 1580H2199V1396H2154" fill="none" stroke="#586475" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 7" marker-end="url(#gray)"/>
+<text x="48" y="1900" font-size="25" font-weight="400" style="fill:#101826" class="section">THE DEMONSTRATION · ONE EXISTING TASK, FOUR PRESSURES</text>
+<rect x="48" y="1930" width="843" height="175" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="78" y="1979" font-size="31" font-weight="700" style="fill:#101826" class="">01 · Hidden instruction</text>
+<rect x="779" y="1947" width="88" height="31" rx="6" fill="#E5F0EA"/>
+<text x="790" y="1970" font-size="19" font-weight="700" style="fill:#1D5E46" class="mono">KEEP</text>
+<text x="78" y="2017" font-size="23" font-weight="400" style="fill:#586475" class="">Existing filter + action gate stop the off-order call and retain</text>
+<text x="78" y="2048" font-size="23" font-weight="400" style="fill:#586475" class="">its source.</text>
+<rect x="935" y="1930" width="843" height="175" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="965" y="1979" font-size="31" font-weight="700" style="fill:#101826" class="">02 · Concurrent purchase</text>
+<rect x="1666" y="1947" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="1677" y="1970" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="965" y="2017" font-size="23" font-weight="400" style="fill:#586475" class="">New atomic root ledger stops a second basket even when the money</text>
+<text x="965" y="2048" font-size="23" font-weight="400" style="fill:#586475" class="">cap fits.</text>
+<rect x="1822" y="1930" width="843" height="175" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="1852" y="1979" font-size="31" font-weight="700" style="fill:#101826" class="">03 · Response loss</text>
+<rect x="2553" y="1947" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="2564" y="1970" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="1852" y="2017" font-size="23" font-weight="400" style="fill:#586475" class="">New worker reconciles; pending exposure remains reserved until</text>
+<text x="1852" y="2048" font-size="23" font-weight="400" style="fill:#586475" class="">evidence resolves it.</text>
+<rect x="2709" y="1930" width="843" height="175" rx="22" fill="#FFFFFF" stroke="#D4DAE2" stroke-width="2"/>
+<text x="2739" y="1979" font-size="31" font-weight="700" style="fill:#101826" class="">04 · Approved adaptation</text>
+<rect x="3440" y="1947" width="88" height="31" rx="6" fill="#E8EFFF"/>
+<text x="3451" y="1970" font-size="19" font-weight="700" style="fill:#1855D8" class="mono">NEW</text>
+<text x="2739" y="2017" font-size="23" font-weight="400" style="fill:#586475" class="">Agents choose a permitted alternative; receipts show what</text>
+<text x="2739" y="2048" font-size="23" font-weight="400" style="fill:#586475" class="">actually finished.</text>
+<text x="48" y="2150" font-size="22" font-weight="700" style="fill:#1D5E46" class="mono">SUBMISSION FOCUS</text>
+<text x="355" y="2150" font-size="25" font-weight="400" style="fill:#101826" class="">System Resilience · Trust &amp; Consent · Accountability · legible English/Hindi purchase fields</text>
+<text x="48" y="2195" font-size="24" font-weight="400" style="fill:#586475" class="">Deployed Google Cloud evaluation. See GOOGLE_CLOUD_VALIDATION.md for exact results, source digests and qualification boundaries.</text>
+</svg>

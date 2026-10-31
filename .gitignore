@@ -1,0 +1,58 @@
+# secrets and local data
+.env
+.env.*
+!.env.example
+data/
+*.db
+*.db-journal
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# node
+node_modules/
+apps/console/dist/
+*.tsbuildinfo
+
+# editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# local tool caches and scratch output (kept on disk, not tracked)
+.playwright-cli/
+output/
+prd_outputs/
+outputs/*.log
+outputs/*.zip
+outputs/*.txt
+outputs/*.compose.json
+outputs/01a18ed2-*/
+eval/intentseal_eval.egg-info/
+
+# superseded standalone prototype (reference only, see docs)
+services/assever/
+compose.assever.yml
+docker-compose.legacy.yml
+
+# Local execution evidence, backups, credentials and preview configuration.
+outputs/
+.claude/
+*.dump
+*.pem
+*.key
+
+# Historical previews and design notes are retained locally, not published as current product docs.
+docs/history/
+docs/snapshots/
+docs/walkthrough/
+docs/brand/abide-logo-*.svg
+docs/architecture.png

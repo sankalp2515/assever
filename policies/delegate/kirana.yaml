@@ -1,0 +1,19 @@
+# Trusted synthetic procurement business. Seller text never adds tools or contacts.
+workspace: kirana-procurement
+agent_id: delegate-workspace
+purchase_profile: kirana-v1
+purchase_limit_paise: 500000
+org_domains: [kirana.example]
+confidential_classes: [confidential]
+tools:
+  read_supplier_quote: {action: read, resource_args: [quote_id], description: Read a synthetic supplier quote}
+  draft_purchase: {action: draft, content_args: [body], description: Draft a purchase proposal without external effects}
+  assever_purchase: {action: purchase, description: Submit through the private typed purchase executor}
+contacts:
+  - {id: supplier_a, name: Supplier A, address: synthetic-a@mock, aliases: [supplier a, supplier_a]}
+  - {id: supplier_b, name: Supplier B, address: synthetic-b@mock, aliases: [supplier b, supplier_b]}
+resources:
+  - {id: shop_01, name: Kirana shop, aliases: [shop, delivery address], data_class: internal}
+  - {id: customer-list, name: Customer list, aliases: [customers, customer export], data_class: confidential}
+verbs:
+  purchase: [buy, purchase, pay, order]

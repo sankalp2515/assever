@@ -1,0 +1,27 @@
+﻿# Only what the image copies; everything else stays out of the build context.
+*
+!requirements.lock
+!LICENSE
+!NOTICE
+!tests/
+!scripts/
+!pytest.ini
+!packages/
+!services/
+!config/
+!policies/
+!eval/
+eval/*
+!eval/reports/
+!apps/
+!apps/console/
+apps/console/node_modules/
+apps/console/dist/
+apps/console/*.tsbuildinfo
+**/__pycache__
+**/*.egg-info
+**/*.pyc
+.env
+.env.*
+!Dockerfile
+!deploy/

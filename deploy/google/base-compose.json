@@ -1,0 +1,356 @@
+{
+  "name": "assever-integrated",
+  "networks": {
+    "application": {
+      "name": "assever-integrated_application",
+      "ipam": {
+        "config": [
+          {
+            "subnet": "10.203.94.0/24"
+          }
+        ]
+      }
+    },
+    "effects": {
+      "name": "assever-integrated_effects",
+      "ipam": {
+        "config": [
+          {
+            "subnet": "10.203.95.0/24"
+          }
+        ]
+      },
+      "internal": true
+    }
+  },
+  "services": {
+    "effects": {
+      "cap_drop": [
+        "ALL"
+      ],
+      "command": [
+        "uvicorn",
+        "intentseal_core.purchase.sink:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8001",
+        "--no-access-log"
+      ],
+      "depends_on": {
+        "postgres": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "DATABASE_URL": "postgresql://purchase_effects:synthetic-effects-local-only@postgres:5432/purchase_effects",
+        "DISPATCH_KEY": "synthetic-integrated-dispatch-local-only",
+        "LAB_ENABLED": "1",
+        "OBSERVER_KEY": "synthetic-integrated-observer-local-only",
+        "PURCHASE_POOL_MIN": "8",
+        "SERVICE_KEY": "synthetic-integrated-service-local-only",
+        "SERVICE_MODE": "sink"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8001/health/ready')"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "assever-integrated:local",
+      "init": true,
+      "mem_limit": "536870912",
+      "networks": {
+        "effects": null
+      },
+      "read_only": true,
+      "restart": "unless-stopped",
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp"
+      ]
+    },
+    "evaluator": {
+      "cap_drop": [
+        "ALL"
+      ],
+      "command": [
+        "uvicorn",
+        "intentseal_gateway.purchase_evaluation:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8002",
+        "--no-access-log"
+      ],
+      "depends_on": {
+        "effects": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "CALLBACK_KEY": "synthetic-integrated-callback-local-only",
+        "DATABASE_URL": "postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal",
+        "DISPATCH_KEY": "synthetic-integrated-dispatch-local-only",
+        "INTEGRATED_REQUIRE_WORKFLOW": "1",
+        "ISSUER_KEY_V1": "synthetic-integrated-issuer-local-only",
+        "LAB_ENABLED": "1",
+        "LAB_KEY": "synthetic-integrated-evaluator-local-only",
+        "OBSERVER_KEY": "synthetic-integrated-observer-local-only",
+        "OLLAMA_URL": "http://models:11434",
+        "PURCHASE_ENABLED": "1",
+        "SERVICE_KEY": "synthetic-integrated-service-local-only",
+        "SINK_URL": "http://effects:8001"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8002/readyz')"
+        ],
+        "timeout": "3s",
+        "interval": "5s",
+        "retries": 30
+      },
+      "image": "assever-integrated:local",
+      "init": true,
+      "mem_limit": "1073741824",
+      "networks": {
+        "application": null,
+        "effects": null
+      },
+      "read_only": true,
+      "restart": "unless-stopped",
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp"
+      ]
+    },
+    "gateway": {
+      "build": {
+        "context": "E:\\Codex Projects\\AI-Security-SAFL",
+        "dockerfile": "Dockerfile",
+        "args": {
+          "VITE_API_KEY": "local-public-key"
+        }
+      },
+      "cap_drop": [
+        "ALL"
+      ],
+      "command": null,
+      "depends_on": {
+        "effects": {
+          "condition": "service_healthy",
+          "required": true
+        },
+        "postgres": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "CALLBACK_KEY": "synthetic-integrated-callback-local-only",
+        "DATABASE_URL": "postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal",
+        "INTEGRATED_REQUIRE_WORKFLOW": "1",
+        "INTENTSEAL_API_KEYS": "local:local-project-key:project,localadmin:local-admin-key:admin,local:local-agent-key:agent",
+        "INTENTSEAL_DATABASE_URL": "postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal",
+        "INTENTSEAL_DELEGATE_SECRET": "synthetic-integrated-handoff-local-only",
+        "INTENTSEAL_INVESTIGATOR_AUTO": "0",
+        "INTENTSEAL_PUBLIC_KEY": "local-public-key",
+        "INTENTSEAL_PUBLIC_RATE_LIMIT_PER_MIN": "300",
+        "INTENTSEAL_RATE_LIMIT_PER_MIN": "2000",
+        "INTENTSEAL_TRIAL_KEYS": "1",
+        "INTENTSEAL_TRIAL_PER_HOUR": "500",
+        "ISSUER_KEY_V1": "synthetic-integrated-issuer-local-only",
+        "LAB_ENABLED": "1",
+        "LAB_KEY": "synthetic-integrated-evaluator-local-only",
+        "LAB_URL": "http://evaluator:8002",
+        "OBSERVER_KEY": "synthetic-integrated-observer-local-only",
+        "OLLAMA_URL": "http://models:11434",
+        "PORT": "8000",
+        "PURCHASE_ENABLED": "1",
+        "PURCHASE_POOL_MIN": "20",
+        "SERVICE_KEY": "synthetic-integrated-service-local-only",
+        "SINK_URL": "http://effects:8001"
+      },
+      "healthcheck": {
+        "timeout": "5s",
+        "interval": "10s",
+        "retries": 12,
+        "start_period": "5m0s"
+      },
+      "image": "assever-integrated:local",
+      "init": true,
+      "mem_limit": "4294967296",
+      "networks": {
+        "application": null,
+        "effects": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "host_ip": "127.0.0.1",
+          "target": 8000,
+          "published": "8000",
+          "protocol": "tcp"
+        }
+      ],
+      "read_only": true,
+      "restart": "unless-stopped",
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp"
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "integrated-data",
+          "target": "/data",
+          "volume": {}
+        }
+      ]
+    },
+    "postgres": {
+      "command": null,
+      "entrypoint": null,
+      "environment": {
+        "POSTGRES_DB": "intentseal",
+        "POSTGRES_PASSWORD": "synthetic-db-admin-local-only",
+        "POSTGRES_USER": "localdbadmin"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "pg_isready -h 127.0.0.1 -U localdbadmin -d intentseal"
+        ],
+        "timeout": "3s",
+        "interval": "3s",
+        "retries": 30
+      },
+      "image": "postgres:16.4-alpine",
+      "mem_limit": "536870912",
+      "networks": {
+        "application": null,
+        "effects": null
+      },
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "integrated-pg",
+          "target": "/var/lib/postgresql/data",
+          "volume": {}
+        },
+        {
+          "type": "bind",
+          "source": "E:\\Codex Projects\\AI-Security-SAFL\\deploy\\init-local-purchase.sql",
+          "target": "/docker-entrypoint-initdb.d/01-purchase.sql",
+          "read_only": true,
+          "bind": {
+            "create_host_path": true
+          }
+        }
+      ]
+    },
+    "worker": {
+      "cap_drop": [
+        "ALL"
+      ],
+      "command": [
+        "python",
+        "-m",
+        "intentseal_core.purchase.worker"
+      ],
+      "depends_on": {
+        "gateway": {
+          "condition": "service_healthy",
+          "required": true
+        }
+      },
+      "entrypoint": null,
+      "environment": {
+        "DATABASE_URL": "postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal",
+        "DISPATCH_KEY": "synthetic-integrated-dispatch-local-only",
+        "INTEGRATED_REQUIRE_WORKFLOW": "1",
+        "ISSUER_KEY_V1": "synthetic-integrated-issuer-local-only",
+        "LAB_ENABLED": "1",
+        "OLLAMA_URL": "http://models:11434",
+        "PURCHASE_ENABLED": "1",
+        "SERVICE_KEY": "synthetic-integrated-service-local-only",
+        "SINK_URL": "http://effects:8001"
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import pathlib,time; p=pathlib.Path('/tmp/assever-worker-heartbeat'); assert p.exists() and time.time()-p.stat().st_mtime<120"
+        ],
+        "timeout": "3s",
+        "interval": "10s",
+        "retries": 3,
+        "start_period": "30s"
+      },
+      "image": "assever-integrated:local",
+      "init": true,
+      "mem_limit": "536870912",
+      "networks": {
+        "application": null,
+        "effects": null
+      },
+      "read_only": true,
+      "restart": "unless-stopped",
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "tmpfs": [
+        "/tmp"
+      ]
+    }
+  },
+  "volumes": {
+    "integrated-data": {
+      "name": "assever-integrated_integrated-data"
+    },
+    "integrated-pg": {
+      "name": "assever-integrated_integrated-pg"
+    }
+  },
+  "x-image": {
+    "cap_drop": [
+      "ALL"
+    ],
+    "image": "assever-integrated:local",
+    "init": true,
+    "restart": "unless-stopped",
+    "security_opt": [
+      "no-new-privileges:true"
+    ]
+  },
+  "x-purchase": {
+    "DATABASE_URL": "postgresql://intentseal_app:synthetic-local-only@postgres:5432/intentseal",
+    "INTEGRATED_REQUIRE_WORKFLOW": "1",
+    "ISSUER_KEY_V1": "synthetic-integrated-issuer-local-only",
+    "LAB_ENABLED": "1",
+    "OLLAMA_URL": "http://models:11434",
+    "PURCHASE_ENABLED": "1",
+    "SERVICE_KEY": "synthetic-integrated-service-local-only",
+    "SINK_URL": "http://effects:8001"
+  }
+}
