@@ -7,7 +7,7 @@ case). A model-driven brain plugs in the same way in the Google build.
 Arms:
   none            - tools run directly
   ask-every-step  - every action that is not a read asks the employee (who, like real users, approves ~93%)
-  delegate        - Abide: contract from the request, content firewall, gate, bound confirmations
+  delegate        - Assever: contract from the request, content firewall, gate, bound confirmations
 """
 
 from __future__ import annotations
@@ -169,7 +169,7 @@ class DelegateGuard(Guard):
 
 
 class FilterOnly(DelegateGuard):
-    """The content filter alone (detection without enforcement): every read is screened exactly as in Abide, but
+    """The content filter alone (detection without enforcement): every read is screened exactly as in Assever, but
     actions run without the gate and the handoff is plain text. The comparison arm for "detecting is not preventing"."""
 
     async def call(self, agent: str, tool: str, args: dict[str, Any]) -> str:

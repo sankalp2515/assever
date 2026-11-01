@@ -20,7 +20,7 @@ def main():
 
 Live product: {result['url']}
 
-The original Abide product is renamed and extended in place. Its console, gateway, Core, SDK, work orders, business policies, original office/support workflows and integration boundaries remain intact. The private Google runtime runs these existing Docker services behind a Cloud Run HTTPS transport. Purchase planning uses Google Gen AI SDK 2.34.0 with Vertex Gemini; original multi-agent tasks use Google ADK 2.12.0. Model Armor, Secret Manager and BigQuery are connected using workload identity. No Ollama service runs in this deployment.
+The original product is renamed and extended in place. Its console, gateway, Core, SDK, work orders, business policies, original office/support workflows and integration boundaries remain intact. The private Google runtime runs these existing Docker services behind a Cloud Run HTTPS transport. Purchase planning uses Google Gen AI SDK 2.34.0 with Vertex Gemini; original multi-agent tasks use Google ADK 2.12.0. Model Armor, Secret Manager and BigQuery are connected using workload identity. No Ollama service runs in this deployment.
 
 ## Verified delivery
 

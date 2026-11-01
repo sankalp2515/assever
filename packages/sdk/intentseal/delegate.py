@@ -1,10 +1,10 @@
-"""Abide client: put your own agents under the employee's words, against a hosted Abide gateway.
+"""Assever client: put your own agents under the employee's words, against a hosted Assever gateway.
 
 Self-contained (only `httpx`), so it also works as a single downloaded file:
 
-    curl -O https://<gateway>/v1/sdk/abide.py
+    curl -o assever.py https://<gateway>/v1/sdk/abide.py
 
-    from abide import DelegateClient, RemoteAdkGuard
+    from assever import DelegateClient, RemoteAdkGuard
 
     client = DelegateClient("https://<gateway>", key)              # a project key (or POST /v1/trial-keys)
     await client.register_workspace("my-company", policy)          # your tools, contacts, files, rules (once)
@@ -181,7 +181,7 @@ AskHandler = Callable[[dict[str, Any]], Awaitable[bool]]
 
 
 class RemoteAdkGuard:
-    """Google ADK callbacks that check every tool call with a remote Abide gateway.
+    """Google ADK callbacks that check every tool call with a remote Assever gateway.
 
     before_tool: allowed -> the tool runs; stopped -> it never runs and the agent gets the reason; needs the employee
     -> `on_ask(check)` decides (await a person, a chat, a ticket), or without it the call waits and the agent is told.
@@ -316,7 +316,7 @@ def langchain_tools(gate: ToolGate, tools: list[Any]) -> list[Any]:
             return await gate.run(_name, kw, lambda: _original(*a, **kw))
 
         def refuse(*a: Any, _name: str = t.name, **kw: Any) -> Any:
-            raise RuntimeError(f"{_name} is guarded by Abide: call it with ainvoke")
+            raise RuntimeError(f"{_name} is guarded by Assever: call it with ainvoke")
         out.append(t.model_copy(update={"coroutine": guarded, "func": refuse}))
     return out
 

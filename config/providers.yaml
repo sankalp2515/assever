@@ -65,7 +65,7 @@ providers:
     priority: 3
     timeout_s: 60
     limits: { rpm: 20 }
-    extra_headers: { X-Title: "Abide (dev)" }
+    extra_headers: { X-Title: "Assever (dev)" }
 
   nvidia:
     type: openai_compatible

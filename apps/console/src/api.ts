@@ -1,4 +1,4 @@
-// Typed client for the Abide Gateway API. Uses the public read-only key (never an admin key in the browser).
+// Typed client for the Assever Gateway API. Uses the public read-only key (never an admin key in the browser).
 
 export const API_BASE: string = (import.meta.env.VITE_API_BASE as string | undefined) ?? "http://localhost:8000";
 /** The service address an outside agent should call: the API base, or this page's origin when served together. */
@@ -302,7 +302,7 @@ export const api = {
     call<Investigation>(`/v1/sessions/${encodeURIComponent(sessionId)}/investigate`, { method: "POST" }),
 };
 
-/* ---- Abide -------------------------------------------------------------------- */
+/* ---- Assever -------------------------------------------------------------------- */
 export interface DClause {
   id: string; effect: "permit" | "prohibit"; action: string; values: Record<string, string[]>; quote: string;
   origin: string; note: string; plain: string; verified?: boolean; superseded_by?: string | null;

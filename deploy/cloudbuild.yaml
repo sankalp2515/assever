@@ -1,5 +1,5 @@
 # Historical gateway-only reference; current integrated rollout is under deploy/google/.
-# Abide on Cloud Run: built by Cloud Build (nothing heavy runs on your machine), pushed to Artifact
+# Assever on Cloud Run: built by Cloud Build (nothing heavy runs on your machine), pushed to Artifact
 # Registry, deployed as one Cloud Run service (gateway + Console + live demo). See docs/DEPLOY_CLOUD_RUN.md.
 #
 #   gcloud builds submit --project <project> --config deploy/cloudbuild.yaml \

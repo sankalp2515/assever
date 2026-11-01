@@ -103,7 +103,7 @@ Live on Cloud Run with Cloud SQL PostgreSQL: 14/14 end-to-end checks (Gemini exp
 
 Plain Docker (no Google credentials): a sandbox task now uses the stand-in agents with a note, instead of failing on missing credentials. The three-agent test team (examples/agent-team) was driven from the browser: the INV-1042 payment and named emails ran; the ₹92,000 payment, the vendor export and the outside email were stopped and traced to the invoice; exactly one question reached Needs you; after approval the email went out. 10/10 checks. Bug fixed: a code-style record (INV-1042) was read two ways (inv-1042 and 1042) and did not match; record ids now have one spelling (test added). pytest 214 passed.
 
-## Live on Cloud Run, revision abide-00008 (18 Oct 2026)
+## Live on Cloud Run, revision 00008 (earlier service name) (18 Oct 2026)
 
 - Live checks 14/14 (Gemini drafted, explained and wrote the receipt; Model Armor screened every read).
 - Walkthrough 18/18 against the live URL (scripts/delegate_walkthrough.py with INTENTSEAL_CONSOLE_URL and INTENTSEAL_WALKTHROUGH_KEY).

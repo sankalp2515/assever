@@ -1,4 +1,4 @@
-# A three-agent test team (Northwind Books) that uses Abide like an outside company: only httpx, plus the one-file
+# A three-agent test team (Northwind Books) that uses Assever like an outside company: only httpx, plus the one-file
 # client it downloads from the gateway at start. See agents.py.
 FROM python:3.11-slim
 RUN pip install --no-cache-dir httpx==0.28.1

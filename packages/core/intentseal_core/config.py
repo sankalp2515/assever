@@ -17,7 +17,7 @@ DEFAULTS = Path(__file__).resolve().parent / "defaults"   # bundled config, poli
 
 
 def repo_root() -> Path:
-    """Where Abide keeps its configuration and data: INTENTSEAL_HOME, else the source checkout this package runs
+    """Where Assever keeps its configuration and data: INTENTSEAL_HOME, else the source checkout this package runs
     from (development), else a per-user folder (~/.intentseal) for an installed package."""
     env = os.environ.get("INTENTSEAL_HOME")
     if env:

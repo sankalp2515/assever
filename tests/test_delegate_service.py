@@ -1,4 +1,4 @@
-"""Abide M3–M5: intake, confirmation, handoff seal, gate decisions, bound approvals, receipts."""
+"""Assever M3–M5: intake, confirmation, handoff seal, gate decisions, bound approvals, receipts."""
 
 import asyncio
 

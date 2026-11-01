@@ -53,7 +53,7 @@ def main():
             row['evidence']='docs/assever/GOOGLE_CLOUD_VALIDATION.md'
             row['completion_note']='Verified in the integrated Google deployment; see requirement traceability and raw source-bound evidence.'
     status['implementation_version']='1.2.4-google'
-    status['notes']=['Original Abide evolved in place into Assever; deployed project assever.',
+    status['notes']=['Assever, built in place on the team's earlier codebase; deployed project assever.',
         'Real Vertex Gemini via Google Gen AI SDK / Google ADK; no Ollama service in the cloud profile.',
         'Exact measured denominators, errors and initial runs remain in cloud validation evidence.',
         'Deployment exclusion superseded by owner authorization; other exclusions and mandatory owner actions remain explicit.',

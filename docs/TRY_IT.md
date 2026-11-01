@@ -1,6 +1,6 @@
 # Try Assever
 
-Live: **https://abide-1041805455955.us-central1.run.app** (Cloud Run, us-central1). It scales to zero, so the first visit
+Live: **https://assever-872171487489.us-central1.run.app** (Cloud Run, us-central1). It scales to zero, so the first visit
 can take a few seconds to wake up.
 
 ## 1. In the browser (5 minutes, no sign-up)
@@ -21,7 +21,7 @@ can take a few seconds to wake up.
 
 ## 2. Your own agent (Colab, 5 minutes)
 
-Open https://colab.research.google.com/github/sankalp2515/Assever/blob/main/examples/colab/abide_quickstart.ipynb and run the cells. It downloads the one-file client from
+Open https://colab.research.google.com/github/sankalp2515/Assever/blob/main/examples/colab/assever_quickstart.ipynb and run the cells. It downloads the one-file client from
 the live service, gets a trial key, registers a small business with your own tools and contacts, and runs an agent
 whose tool calls are checked against the card.
 
@@ -29,12 +29,12 @@ whose tool calls are checked against the card.
 
 ```bash
 pip install httpx
-curl -O https://abide-1041805455955.us-central1.run.app/v1/sdk/abide.py
+curl -o assever.py https://assever-872171487489.us-central1.run.app/v1/sdk/abide.py
 ```
 
 ```python
 import asyncio
-from abide import DelegateClient, ToolGate
+from assever import DelegateClient, ToolGate
 
 POLICY = {"tools": {"read_note": {"action": "read", "resource_args": ["name"]},
                     "send_email": {"action": "send", "recipient_args": ["to"], "content_args": ["body"]}},
@@ -48,7 +48,7 @@ async def send_email(to: str, body: str) -> str:
     return f"sent to {to}"
 
 async def main():
-    client = await DelegateClient.with_trial_key("https://abide-1041805455955.us-central1.run.app")
+    client = await DelegateClient.with_trial_key("https://assever-872171487489.us-central1.run.app")
     await client.register_workspace("acme", POLICY)
     card = await client.start("Read the launch plan and email Sam a summary.", workspace="acme")
     await client.confirm(card)

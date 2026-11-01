@@ -1,4 +1,4 @@
-"""Abide x Google ADK: a real ADK agent runtime, with a scripted stand-in model (no network), proves the
+"""Assever x Google ADK: a real ADK agent runtime, with a scripted stand-in model (no network), proves the
 tool callbacks are wired: a forbidden call never runs, the agent is told why and carries on, an allowed call runs and
 is recorded, and what a reading tool returns passes through the content filter before the model sees it."""
 

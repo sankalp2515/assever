@@ -1,4 +1,4 @@
-# Abide: one image with the Gateway API, the Delegate service, the Console (served at /), the content
+# Assever: one image with the Gateway API, the Delegate service, the Console (served at /), the content
 # filter (engine + local classifier, baked in) and the Gemini agents (Google ADK). Runs as an unprivileged user.
 #
 #   docker compose up --build -d        # gateway + PostgreSQL (docker-compose.yml), Console on http://localhost:8000
@@ -27,7 +27,7 @@ COPY packages/sdk/pyproject.toml packages/sdk/README.md packages/sdk/LICENSE pac
 COPY services/gateway/pyproject.toml ./services/gateway/
 # Runtime dependencies only, at the exact versions of requirements.lock (a constraints file: nothing extra installed).
 RUN --mount=type=cache,target=/root/.cache/pip pip install -c requirements.lock "./packages/core[engine,classifiers,ocr,postgres]" ./packages/sdk ./services/gateway openai
-# Abide's Gemini agents run on Google ADK (it brings google-genai and a newer FastAPI; tested together).
+# Assever's Gemini agents run on Google ADK (it brings google-genai and a newer FastAPI; tested together).
 RUN --mount=type=cache,target=/root/.cache/pip pip install "google-adk==2.12.0" "google-genai==2.34.0"
 RUN --mount=type=cache,target=/root/.cache/pip pip install "psycopg_pool==3.3.0" "PyJWT==2.10.1" "cryptography==46.0.3" "pytest==9.1.1" "pytest-asyncio==1.4.0" "respx==0.23.1" "anthropic==1.12.0"
 # Bake the Tier 1 classifier into the image so a cold start never runs without it.

@@ -1,4 +1,4 @@
-"""Abide gateway API: the live Ravi demo through HTTP, and the general routes' scopes."""
+"""Assever gateway API: the live Ravi demo through HTTP, and the general routes' scopes."""
 
 from __future__ import annotations
 

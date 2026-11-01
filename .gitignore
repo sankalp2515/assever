@@ -54,7 +54,6 @@ outputs/
 docs/history/
 docs/snapshots/
 docs/walkthrough/
-docs/brand/abide-logo-*.svg
 docs/architecture.png
 
 # One-time authoring generators are not installation/rollout tools.

@@ -1,6 +1,6 @@
 # Security policy
 
-Abide is a security product, so reports are welcome and taken seriously.
+Assever is a security product, so reports are welcome and taken seriously.
 
 ## Reporting a vulnerability
 

@@ -1,4 +1,4 @@
-"""Abide Core Engine."""
+"""Assever Core Engine."""
 
 import os
 

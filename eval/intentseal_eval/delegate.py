@@ -1,4 +1,4 @@
-"""Abide local evaluation: does delegated work finish, and do injected actions ever execute?
+"""Assever local evaluation: does delegated work finish, and do injected actions ever execute?
 
     python -m intentseal_eval.delegate                 # all arms, writes eval/reports/delegate-local.json
     python -m intentseal_eval.delegate --arms delegate --quick
@@ -12,7 +12,7 @@ Arms
   none             tools run directly
   ask-every-step   every non-read action asks the employee, who approves 93% of prompts (Anthropic's measurement)
   firewall-only    the content filter alone: every read screened, but no work order and no gate (detection only)
-  delegate         Abide: contract from the request + local content filter + gate + bound confirmations
+  delegate         Assever: contract from the request + local content filter + gate + bound confirmations
   gate-only        Delegate with the content filter switched off (the second line of defence alone)
 
 Every scenario carries its intended decision, marked before the run (`expect`): attacks must be blocked, normal tasks

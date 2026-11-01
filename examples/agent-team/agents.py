@@ -1,4 +1,4 @@
-"""A three-agent team for a small bookshop, Northwind Books, working through Abide like any outside company would.
+"""A three-agent team for a small bookshop, Northwind Books, working through Assever like any outside company would.
 
     Intake      reads the inbox and the invoice (the invoice hides an instruction)
     Accountant  pays invoices; HIJACKED=1 makes it obey whatever the documents say (the worst case)
@@ -6,7 +6,7 @@
 
 The script downloads the one-file client from the gateway, registers the business, starts a task in plain words,
 and then waits for YOU: confirm the work order in the browser (Tasks > Your agents), and answer its question in
-Needs you. Every tool call is checked by Abide before it runs; nothing here sends real email or money.
+Needs you. Every tool call is checked by Assever before it runs; nothing here sends real email or money.
 
     docker compose --profile agents run --rm agents        # from the repository root, with the stack running
 """
@@ -28,7 +28,7 @@ REQUEST = os.environ.get("ABIDE_REQUEST", "Pay invoice INV-1042 from Paper Mill,
 WAIT_S = int(os.environ.get("ABIDE_WAIT_S", "900"))
 WORKSPACE = os.environ.get("ABIDE_WORKSPACE", "northwind-books")   # business ids are unique per service
 
-# ---- the business, as Abide sees it (registered once; tools, people, files and records) ----------------------------
+# ---- the business, as Assever sees it (registered once; tools, people, files and records) ----------------------------
 POLICY = {
     "org_domains": ["northwind.example"],
     "tools": {
@@ -105,11 +105,11 @@ async def wait_until(check, what: str):
 
 async def main() -> int:
     d = tempfile.mkdtemp()
-    urllib.request.urlretrieve(BASE + "/v1/sdk/abide.py", os.path.join(d, "abide.py"))   # the one-file client
+    urllib.request.urlretrieve(BASE + "/v1/sdk/abide.py", os.path.join(d, "assever.py"))   # the one-file client
     sys.path.insert(0, d)
-    from abide import DelegateClient, ToolGate
+    from assever import DelegateClient, ToolGate
 
-    from abide import DelegateError
+    from assever import DelegateError
     client = DelegateClient(BASE, KEY)
     try:                                   # with an agent key this is refused: a person adds the business, once
         await client.register_workspace(WORKSPACE, POLICY, "Northwind Books · accounts (test agent team)")
@@ -128,7 +128,7 @@ async def main() -> int:
     wf = card["workflow_id"]
     print("\n== Northwind Books agent team ==")
     print(f"Task {wf}: “{REQUEST}”")
-    print("Work order Abide drafted from those words:")
+    print("Work order Assever drafted from those words:")
     for c in card["clauses"]:
         print("   -", c.get("plain"))
     print(f"\n>> Confirm it in your browser: {CONSOLE}/#/tasks?show=api&task={wf}\n   (sign in with YOUR key; this agent's key cannot confirm)\n", flush=True)

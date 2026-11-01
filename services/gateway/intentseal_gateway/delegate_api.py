@@ -1,4 +1,4 @@
-"""Abide API. Two groups of routes:
+"""Assever API. Two groups of routes:
 
 /v1/delegations/...     for any agent framework: start a delegation from the employee's request, confirm it, amend it
                         with the employee's next words, inspect content, seal handoffs, check tool calls, report what
@@ -315,7 +315,7 @@ async def my_agents(request: Request, p: Principal = require("project")) -> list
         (*builtin, *([] if p.scope == "admin" else [p.name])))
     return [{**r, "checks": int(r["checks"]), "tasks": int(r["tasks"]), "allowed": int(r["allowed"] or 0),
              "stopped": int(r["stopped"] or 0), "asked": int(r["asked"] or 0), "sandbox": bool(r["sandbox"]),
-             "kind": "Gemini on Google ADK (sandbox)" if r["sandbox"] else "Your agent, through the Abide API"}
+             "kind": "Gemini on Google ADK (sandbox)" if r["sandbox"] else "Your agent, through the Assever API"}
             for r in rows]
 
 
@@ -597,7 +597,7 @@ async def demo_say(wf: str, body: WordsRequest, request: Request, p: Principal =
 
 @router.get("/v1/delegate-eval")
 async def delegate_eval(request: Request) -> dict[str, Any]:
-    """The latest local evaluation of Abide (eval/reports/delegate-local.json), summarised. Public."""
+    """The latest local evaluation of Assever (eval/reports/delegate-local.json), summarised. Public."""
     import json as _json
     path = request.app.state.reports / "delegate-local.json"
     if not path.is_file():

@@ -20,7 +20,7 @@ def main():
         if source.exists(): shutil.copy2(source, OUT / name)
     (OUT / 'README.md').write_text(f'''# Assever 1.1 — integrated local release
 
-The original Abide application is renamed and extended in place. Open http://localhost:8000 . The original console, gateway, Core, SDK, policies, office/support workflows and integrations remain the product. The earlier standalone purchase application is stopped, with its data preserved.
+The original application is renamed and extended in place. Open http://localhost:8000 . The original console, gateway, Core, SDK, policies, office/support workflows and integrations remain the product. The earlier standalone purchase application is stopped, with its data preserved.
 
 ## Run and inspect
 

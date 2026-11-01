@@ -1,6 +1,6 @@
 ﻿# Historical gateway-only reference. Current integrated Assever rollout is under deploy/google/
 # and docs/assever/GOOGLE_CLOUD_OPERATIONS.md; this script omits private purchase services.
-# Abide: one-time setup and deploy to Cloud Run. Run from the repository root in PowerShell.
+# Assever: one-time setup and deploy to Cloud Run. Run from the repository root in PowerShell.
 #
 #   .\scripts\deploy_cloud_run.ps1 -Project my-intentseal-project [-Region us-central1]
 #
@@ -26,7 +26,7 @@ gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregi
 
 if (-not (gcloud artifacts repositories list --location=$Region --filter="name~intentseal" --format="value(name)" $P)) {
   gcloud artifacts repositories create intentseal --repository-format=docker --location=$Region `
-    --description="Abide images" $P
+    --description="Assever images" $P
 }
 
 # Model Armor: prompt injection / jailbreak and malicious links hold content; sensitive data is recorded.
@@ -44,7 +44,7 @@ catch {
 # A runtime identity with only what the service needs.
 $sa = "intentseal-run@$Project.iam.gserviceaccount.com"
 if (-not (gcloud iam service-accounts list --filter="email=$sa" --format="value(email)" $P)) {
-  gcloud iam service-accounts create intentseal-run --display-name="Abide runtime" $P
+  gcloud iam service-accounts create intentseal-run --display-name="Assever runtime" $P
 }
 foreach ($role in "roles/aiplatform.user", "roles/modelarmor.user") {
   gcloud projects add-iam-policy-binding $Project --member="serviceAccount:$sa" --role=$role --condition=None | Out-Null
@@ -91,7 +91,7 @@ gcloud projects add-iam-policy-binding $Project --member="serviceAccount:$sa" --
 # BigQuery: every receipt streamed to abide_audit.receipts for analysis (the Console's insights panel).
 gcloud services enable bigquery.googleapis.com $P
 if (-not (bq --project_id=$Project ls --datasets --format=json | Select-String '"abide_audit"')) {
-  bq --project_id=$Project mk --dataset --location=US --description="Abide receipts for analysis" "${Project}:abide_audit"
+  bq --project_id=$Project mk --dataset --location=US --description="Assever receipts for analysis" "${Project}:abide_audit"
   bq --project_id=$Project mk --table --time_partitioning_field=created --time_partitioning_type=DAY `
     --clustering_fields=principal,decision "${Project}:abide_audit.receipts" `
     "workflow_id:STRING,seq:INT64,rid:STRING,kind:STRING,agent:STRING,tool:STRING,decision:STRING,reason:STRING,ruling:STRING,traced_to:STRING,explanation:STRING,workspace:STRING,principal:STRING,created:TIMESTAMP,hash:STRING,data:STRING"

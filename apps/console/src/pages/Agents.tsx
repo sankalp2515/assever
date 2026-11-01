@@ -39,7 +39,7 @@ export function ConnectAgent({ apiKey }: { apiKey: string }) {
   const copy = async (what: string, text: string) => {
     try { await navigator.clipboard.writeText(text); setCopied(what); setTimeout(() => setCopied(null), 1800); } catch { /* no clipboard */ }
   };
-  const code = `pip install httpx\ncurl -O ${origin}/v1/sdk/abide.py\n\n# in your agent\nfrom abide import DelegateClient, ToolGate\nclient = DelegateClient("${origin}", "<your agent key>")\ncard = await client.start("Read the launch plan and email Sam a summary.", workspace="<your business>")\n# confirm the card here, on this page, then:\ngate = ToolGate(client, card["workflow_id"], "my-agent")\nsend_email = gate.wrap(send_email)`;
+  const code = `pip install httpx\ncurl -o assever.py ${origin}/v1/sdk/abide.py\n\n# in your agent\nfrom assever import DelegateClient, ToolGate\nclient = DelegateClient("${origin}", "<your agent key>")\ncard = await client.start("Read the launch plan and email Sam a summary.", workspace="<your business>")\n# confirm the card here, on this page, then:\ngate = ToolGate(client, card["workflow_id"], "my-agent")\nsend_email = gate.wrap(send_email)`;
   return (
     <section className="card overflow-hidden" aria-labelledby="connect-title">
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
@@ -52,8 +52,8 @@ export function ConnectAgent({ apiKey }: { apiKey: string }) {
             <li className="flex gap-3"><span className="mono pt-0.5" style={{ color: "var(--accent)" }}>3</span><span>Its tasks appear below. Confirm the work order, answer its questions, read the receipt.</span></li>
           </ol>
           <div className="flex flex-wrap gap-3">
-            <a className="pill pill-primary pill-sm" href="https://colab.research.google.com/github/sankalp2515/Assever/blob/main/examples/colab/abide_quickstart.ipynb" target="_blank" rel="noreferrer">Open the Colab</a>
-            <a className="pill pill-sm" href={`${origin}/v1/sdk/abide.py`} download>Download abide.py</a>
+            <a className="pill pill-primary pill-sm" href="https://colab.research.google.com/github/sankalp2515/Assever/blob/main/examples/colab/assever_quickstart.ipynb" target="_blank" rel="noreferrer">Open the Colab</a>
+            <a className="pill pill-sm" href={`${origin}/v1/sdk/abide.py`} download="assever.py">Download the Python client</a>
           </div>
         </div>
         <div className="relative min-w-0">

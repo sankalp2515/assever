@@ -1,4 +1,4 @@
-"""Abide M1–M2: argument-level contracts, the compiler and the grounding validator."""
+"""Assever M1–M2: argument-level contracts, the compiler and the grounding validator."""
 
 import asyncio
 

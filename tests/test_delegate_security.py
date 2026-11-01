@@ -1,4 +1,4 @@
-"""Abide: judge-level probes kept as regression tests (security gaps found on 16 Oct and fixed)."""
+"""Assever: judge-level probes kept as regression tests (security gaps found on 16 Oct and fixed)."""
 
 import asyncio
 

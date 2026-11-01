@@ -182,7 +182,7 @@
   .lg-hero-cap { position: static; display: block; margin-top: 10px; }
 }
 
-/* the category, said up front, and where Abide sits */
+/* the category, said up front, and where Assever sits */
 .lg-category { color: var(--accent); }
 .lg-cta-link { align-self: center; font-weight: 600; }
 .lg-sits { display: flex; flex-wrap: nowrap; align-items: stretch; gap: 6px; margin: 22px 0 6px; max-width: 760px; }

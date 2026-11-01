@@ -100,7 +100,7 @@ text(788, 237, "GOOGLE CLOUD · existing service boundaries retained", 25, "#487
 text(48, 245, "PEOPLE · SAME CONSOLE", 27, cls="section")
 text(2935, 245, "YOUR BUSINESS", 27, cls="section")
 parts.append(f'<rect x="790" y="269" width="1390" height="1575" rx="30" fill="#FFFFFF" stroke="{green}" stroke-width="4"/>')
-text(825, 319, "Assever checkpoint · existing Assever gateway", 34, weight="700")
+text(825, 319, "Assever checkpoint · existing gateway", 34, weight="700")
 text(825, 353, "services/gateway + packages/core · one authority boundary", 23, green, cls="mono")
 text(2230, 290, "MANAGED / PRIVATE SERVICES", 24, cls="section")
 
@@ -334,7 +334,7 @@ box(
     "Keep tools, contacts, records and company rules. Add trusted catalog units, merchant/payee mapping, allowed delivery fields and adapter capabilities.",
     "EXTEND",
 )
-text(2935, 1110, "WHAT THIS ADDS TO ABIDE", 25, cls="section")
+text(2935, 1110, "WHAT THIS ADDS", 25, cls="section")
 box(
     2935,
     1140,
@@ -390,7 +390,7 @@ text(355, 2150, "System Resilience · Trust & Consent · Accountability · legib
 text(
     48,
     2195,
-    "Target design only. Existing purchase test results are component evidence; the integrated Assever → Assever product requires fresh end-to-end validation.",
+    "Target design only. Existing purchase test results are component evidence; the integrated Assever product requires fresh end-to-end validation.",
     24,
     subtle,
 )
@@ -409,7 +409,7 @@ if "--implemented" in sys.argv:
         "Assever runtime · integrated target architecture": "Assever runtime · integrated local architecture",
         "DESIGN FOR CORRECTION · integration not yet verified": "LOCAL DOCKER · original gateway + integrated purchase profile",
         "GOOGLE CLOUD · existing service boundaries retained": "LOCAL DOCKER · existing service boundaries retained",
-        "Target design only. Existing purchase test results are component evidence; the integrated Assever → Assever product requires fresh end-to-end validation.": "Integrated local release. See INTEGRATED_RELEASE_STATUS.md for verification, exact denominators, qualification gaps and cloud exclusions.",
+        "Target design only. Existing purchase test results are component evidence; the integrated Assever product requires fresh end-to-end validation.": "Integrated local release. See INTEGRATED_RELEASE_STATUS.md for verification, exact denominators, qualification gaps and cloud exclusions.",
         "New core module, stored in the existing": "Core module, stored in the existing",
         "New typed core / adapter interface.": "Typed core / adapter interface.",
         "New worker container; no second public app.": "Private worker container; same public gateway.",

@@ -57,7 +57,7 @@ def main():
                 }
     result = {
         "version": "1.1.0-integrated",
-        "product": "Original Abide evolved in place into Assever",
+        "product": "Assever, built in place on the team's earlier codebase",
         "local_url": "http://localhost:8000",
         "purchase_tests": passed(ROOT / "outputs/assever-integrated-purchase-final-tests.txt"),
         "foundation_tests": passed(ROOT / "outputs/assever-integrated-foundation-postgres-tests.txt"),
@@ -93,7 +93,7 @@ def main():
             continue
         row["evidence"] = "docs/assever/INTEGRATED_RELEASE_STATUS.md"
         row["completion_note"] = (
-            "Integrated into the original Abide product boundary; verified in the local Docker release. See integrated status and source-linked evidence."
+            "Integrated into the existing product boundary; verified in the local Docker release. See integrated status and source-linked evidence."
         )
         if row["key"] == "perf":
             row["completion_note"] = (
@@ -101,7 +101,7 @@ def main():
             )
     status["implementation_version"] = "1.1.0-integrated"
     status["notes"] = [
-        "Assever is the renamed Abide product, extended in its existing console/gateway/Core/SDK boundaries.",
+        "Assever is extended in its existing console/gateway/Core/SDK boundaries.",
         "Statuses refer to the local integrated release; raw prior standalone evidence is preserved separately.",
         "Done records completed scoped work. G9 remains conditional on exact-host performance qualification and excluded deployment.",
         "Video, public deployment/publication and mandatory owner identity/account/consent actions remain excluded or partial.",
@@ -144,7 +144,7 @@ def main():
     text = [
         "# Assever integrated local release",
         "",
-        "The original Abide console, gateway, Core, SDK, policies, office/support workflows and integrations are retained. Purchase logic is integrated into those boundaries. Active URL: http://localhost:8000 . The earlier standalone application is stopped, with its data preserved.",
+        "The original console, gateway, Core, SDK, policies, office/support workflows and integrations are retained. Purchase logic is integrated into those boundaries. Active URL: http://localhost:8000 . The earlier standalone application is stopped, with its data preserved.",
         "",
         f"Backlog reconciliation: {counts}. Original estimates remain estimates. All owner-controlled and user-excluded actions retain their explicit status.",
         "",
