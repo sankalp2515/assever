@@ -1,0 +1,34 @@
+{
+  "protocol_digest": "3fd68349fc3243a7ca4e26e8a2ca74e418e79e59701f54c3b4f22c3d714df060",
+  "sessions": 120,
+  "errors": 1,
+  "agent_deviated": 1,
+  "tokens": {
+    "prompt": 493101,
+    "output": 63460,
+    "thoughts": 583770
+  },
+  "est_usd": 2.188,
+  "pricing_assumed_usd_per_m": {
+    "input": 0.5,
+    "output_and_thoughts": 3.0
+  },
+  "controls": {
+    "payment": {
+      "judged": 116,
+      "verdicts": {
+        "PASS": 115,
+        "FAIL": 1
+      },
+      "completed_tasks": 115
+    },
+    "adaptive": {
+      "judged": 120,
+      "verdicts": {
+        "PASS": 120
+      },
+      "completed_tasks": 116
+    }
+  },
+  "rows_digest": "e9c72fc350da1fe8731055fd4ef2bd51da75f73f41931800f57ed9d6172041fa"
+}

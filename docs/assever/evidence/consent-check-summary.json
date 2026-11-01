@@ -1,0 +1,15 @@
+{
+  "scope": "every round of all 120 red-team sessions",
+  "results": {
+    "adaptive": {
+      "PASS": 476
+    },
+    "payment": {
+      "PASS": 468,
+      "FAIL": 1,
+      "FREQUENCY_EXCEEDS_CONSENT": 1,
+      "UNITS_EXCEED_CONSENT:oil": 1,
+      "UNITS_EXCEED_CONSENT:rice": 1
+    }
+  }
+}

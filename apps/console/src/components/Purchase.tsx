@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { call, tasks, type DState, type DReport } from "../api";
 import { useEmployee } from "../employee";
 import { ErrorNote, Stamp } from "./ui";
+import { buildArtefact, checkConsent, type Artefact, type ConsentCheck } from "../consent";
 
 type Scope = { max_paise: number; max_purchases: number; currency: string; merchants: string[]; delivery_ref: string;
   disclosure_fields: string[]; expires_at: number; lines: Record<string, { max_units: number; unit: string; skus: string[] }> };
@@ -141,6 +142,7 @@ export function PurchaseTask({ apiKey, wf, words }: { apiKey: string; wf: string
       {verdict && <p role="status" className="mono">{verdict}</p>}{bundle && <><button className="pill" onClick={() => { const url = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: "application/json" })); const a = document.createElement("a"); a.href = url; a.download = `${wf}-purchase-evidence.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }}>Download evidence bundle</button><details><summary className="cursor-pointer text-sm">Inspect quotes and actual effect records</summary><pre className="mt-3 max-h-96 overflow-auto text-xs">{JSON.stringify(bundle, null, 2)}</pre></details></>}
       <ol className="space-y-2">{p.events.map(e => <li key={e.sequence} className="text-sm"><span className="mono subtle">{e.sequence} · </span>{e.body.kind}<details><summary className="cursor-pointer subtle text-xs">Record</summary><pre className="overflow-auto text-xs">{JSON.stringify(e.body.details, null, 2)}</pre></details></li>)}</ol>
     </section>
+    {bundle && <ConsentRecord bundle={bundle} words={words} wf={wf} />}
     <section className="card p-5 space-y-4"><div className="flex flex-wrap items-center justify-between gap-3"><h3 className="h3">Work receipt</h3><button className="pill pill-sm" disabled={busy} onClick={() => act(async () => setReport(await tasks.report(apiKey,wf)))}>Write the receipt</button></div>
       <p className="subtle text-sm">The same work-order receipt chain now includes purchase admissions, stops and provider-qualified outcomes. Every report sentence cites its records.</p>
       {report && <><ul className="space-y-3">{report.sentences.map((s,i) => <li key={i} className="text-sm">{s.text} {s.cites.map(c => <span key={c} className="mono subtle">[{c}] </span>)}</li>)}</ul><Stamp kind={report.chain_ok ? "ran" : "stopped"}>{report.chain_ok ? "Chain intact" : "Chain broken"}</Stamp></>}
@@ -200,5 +202,35 @@ export function PurchaseConnect() {
     <pre className="overflow-auto rounded border p-4 text-xs" style={{ borderColor: "var(--line)" }}>{`from intentseal.delegate import DelegateClient\n\nclient = DelegateClient("http://localhost:8000", agent_key)\noperation = await client.purchase_submit(\n    workflow_id, merchant_id="supplier_a", grant_id=grant_id\n)\n# Admission is pending. Read provider-qualified status:\nstatus = await client.purchase_operation(operation["id"])`}</pre>
     <p className="text-sm">For ADK callbacks, expose a tool named <code>assever_purchase</code> with only <code>merchant_id</code> and <code>grant_id</code>. The existing remote guard intercepts it and returns an operation handle; it never invokes a second payment tool.</p>
     <a className="text-link text-sm" href="/docs" target="_blank" rel="noreferrer">Gateway API reference</a><span className="subtle mx-2">·</span><a className="text-link text-sm" href="/v1/sdk/assever.py">Download the existing SDK with purchase support</a>
+  </section>;
+}
+
+/** DEPA-style consent record derived from the evidence bundle, checked in the browser against the independent effects. */
+function ConsentRecord({ bundle, words, wf }: { bundle: Record<string, unknown>; words: string; wf: string }) {
+  const [a, setA] = useState<Artefact | null>(null);
+  const [r, setR] = useState<ConsentCheck | null>(null);
+  useEffect(() => { let alive = true; (async () => {
+    const art = await buildArtefact(bundle as never, words); const res = await checkConsent(art, bundle as never);
+    if (alive) { setA(art); setR(res); }
+  })(); return () => { alive = false; }; }, [bundle, words]);
+  if (!a || !r) return null;
+  const d = a.consentDetail;
+  return <section className="card p-5 space-y-4">
+    <div className="flex flex-wrap items-center justify-between gap-3"><h3 className="h3">Consent record · DEPA-style</h3>
+      <Stamp kind={r.verdict === "PASS" ? "ran" : "stopped"}>{r.verdict === "PASS" ? "Effects within consent" : "Outside consent"}</Stamp></div>
+    <p className="subtle text-sm">Your approval as a purpose-bound consent artefact: purpose, items, gross cap, frequency, data fields, validity and revocation. Every supplier, payment and disclosure record is checked against it. Withdraw consent with <b>Stop new purchases</b>; anything dispatched after that fails the check.</p>
+    <dl className="grid grid-cols-[minmax(110px,0.4fr)_minmax(0,1fr)] gap-x-4 gap-y-2 text-sm break-words">
+      <dt className="subtle">Status</dt><dd className="mono">{a.status}</dd>
+      <dt className="subtle">Purpose</dt><dd>{a.purpose.code} · {a.purpose.text}</dd>
+      <dt className="subtle">Consumer</dt><dd>{a.dataConsumer.id} (AI agent) · providers {a.dataProviders.map((p: { id: string }) => labels[p.id] || p.id).join(", ")}</dd>
+      <dt className="subtle">Limits</dt><dd>{amount(d.maxAmount.value)} gross · {d.frequency.value} purchase · {Object.entries(d.items).map(([k, v]) => `${k} ≤ ${(v as { maxUnits: number }).maxUnits} ${(v as { unit: string }).unit}`).join(", ")}</dd>
+      <dt className="subtle">Data fields</dt><dd>{d.dataFields.map((f: string) => labels[f] || f).join(", ")}</dd>
+      <dt className="subtle">Valid</dt><dd className="mono">{d.consentStart} → {d.consentExpiry}</dd>
+      <dt className="subtle">Revoked</dt><dd className="mono">{a.revocation.revokedAt ?? "not revoked"}</dd>
+      <dt className="subtle">Check</dt><dd className="mono">{r.checked_effects} effects · {amount(r.captured_paise)} · {r.orders} order{r.orders === 1 ? "" : "s"}{r.errors.length ? " · " + r.errors.join(" · ") : ""}</dd>
+      <dt className="subtle">Digest</dt><dd className="mono break-all">{a.consentDigest}</dd>
+    </dl>
+    <button className="pill pill-sm" onClick={() => { const url = URL.createObjectURL(new Blob([JSON.stringify(a, null, 2)], { type: "application/json" })); const el = document.createElement("a"); el.href = url; el.download = `${wf}-consent.json`; el.click(); URL.revokeObjectURL(url); }}>Download consent artefact</button>
+    <p className="subtle text-xs">Modelled on the DEPA consent artefact for evaluation; not a ReBIT-certified artefact or a live consent manager. Re-check offline with <span className="mono">python -m intentseal_core.purchase.consent evidence.json</span>.</p>
   </section>;
 }

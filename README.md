@@ -21,6 +21,8 @@ A historical local study with small Qwen models (separate, not deployed) found 5
 2. Open **Tasks > New purchase**, approve the work order, run a Gemini proposal, then run it again: the second is refused with `DEMAND_ALREADY_ENCUMBERED`.
 3. Offline: `python scripts/verify_assever_google_exports.py` re-checks the evidence bundles with the Python standard library only.
 
+**DEPA-style consent record:** every approved purchase can be exported as a purpose-bound consent artefact (purpose, items, gross cap, frequency, data fields, validity, revocation) and every effect is checked against it, in the console's purchase view or offline with `python -m intentseal_core.purchase.consent evidence.json` ([consent.py](packages/core/intentseal_core/purchase/consent.py)). Across every round of the 120 red-team sessions, Assever stayed within consent 476/476 times; the payment control's fooled run failed on frequency and units. It is modelled on DEPA for evaluation, not a ReBIT-certified artefact.
+
 The red-team engine is [scripts/assever_google_redteam.py](scripts/assever_google_redteam.py). Its pre-registered protocol, all 120 sessions and token usage (about US$2.19) ship with the evidence release.
 
 Track: System Resilience, with Trust & Consent and Accountability. Scenario: a kirana purchase (rice and oil, INR budget) with a Hindi review view.
