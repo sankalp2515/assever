@@ -8,7 +8,7 @@
   works with a small interface for each step, use cases, evidence, a developer section and a call to action.
 - The console pages (Delegate, Agents, Replay, Decisions, Review, Policy) keep their design; the Delegate sign-in
   offers a one-click free trial key.
-- The one-file client is served at `/v1/sdk/abide.py` (the old path still works); the Colab notebook is
+- The one-file client is served at `/v1/sdk/assever.py` (older paths still work); the Colab notebook is
   `examples/colab/assever_quickstart.ipynb`; trial keys are on by default in Docker Compose.
 
 ## 0.2.0 — 2026-10-17

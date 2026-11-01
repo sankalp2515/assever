@@ -68,7 +68,7 @@ Method and limits: [EVAL.md](EVAL.md).
 | Python tests / lint | 199 passed, 5 skipped / clean |
 | Console types / tests | clean / 8 of 8 |
 | Browser journey (headless Edge, Docker, stand-in agents) | all 18 steps of [WALKTHROUGH.md](WALKTHROUGH.md); screenshots refreshed with the new landing page and the trial sign-in |
-| Docker with Google, 13 checks | 13 of 13: Console served as Assever; trial key; `/v1/sdk/abide.py`; live Gemini agents; card and receipt by Vertex AI; hijacked agent's ₹48,000 refund and customer export stopped and traced to the ticket while the ₹1,850 refund ran; Model Armor on every read; a registered business governs its own recipients |
+| Docker with Google, 13 checks | 13 of 13: Console served as Assever; trial key; `/v1/sdk/assever.py`; live Gemini agents; card and receipt by Vertex AI; hijacked agent's ₹48,000 refund and customer export stopped and traced to the ticket while the ₹1,850 refund ran; Model Armor on every read; a registered business governs its own recipients |
 
 ## Cloud Run (18 Oct 2026)
 

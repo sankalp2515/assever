@@ -2,7 +2,7 @@
 
 Self-contained (only `httpx`), so it also works as a single downloaded file:
 
-    curl -o assever.py https://<gateway>/v1/sdk/abide.py
+    curl -O https://<gateway>/v1/sdk/assever.py
 
     from assever import DelegateClient, RemoteAdkGuard
 

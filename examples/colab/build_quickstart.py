@@ -32,7 +32,7 @@ stops. Nothing real is sent: the tools below are plain Python over an in-memory 
 sign-up; otherwise paste the project key you were given. The client is one file, downloaded from the service."""),
     ("code", """import os, getpass, urllib.request, sys
 GATEWAY = os.environ.get("GATEWAY", "https://YOUR-INTENTSEAL-SERVICE")      # the Assever service URL
-urllib.request.urlretrieve(GATEWAY + "/v1/sdk/abide.py", "assever.py")
+urllib.request.urlretrieve(GATEWAY + "/v1/sdk/assever.py", "assever.py")
 sys.path.insert(0, ".")
 from assever import DelegateClient, RemoteAdkGuard, DelegateError
 

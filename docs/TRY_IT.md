@@ -29,7 +29,7 @@ whose tool calls are checked against the card.
 
 ```bash
 pip install httpx
-curl -o assever.py https://assever-872171487489.us-central1.run.app/v1/sdk/abide.py
+curl -O https://assever-872171487489.us-central1.run.app/v1/sdk/assever.py
 ```
 
 ```python

@@ -22,7 +22,7 @@ three per address per hour. An operator issues permanent keys through `INTENTSEA
 One file, only `httpx` needed, served by the gateway itself:
 
 ```bash
-curl -o assever.py https://<gateway>/v1/sdk/abide.py
+curl -O https://<gateway>/v1/sdk/assever.py
 ```
 
 (or `from intentseal.delegate import DelegateClient, RemoteAdkGuard` with the `intentseal` package installed).

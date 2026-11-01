@@ -2,7 +2,10 @@
 
 import hashlib
 import os
+from typing import Literal
+
 from fastapi import APIRouter, Depends, Request, Header
+from pydantic import BaseModel, Field
 from intentseal_core.purchase import service as actions
 from intentseal_core.purchase.schemas import (
     ModelPurchase,
@@ -333,6 +336,35 @@ async def model_purchase(contract_id: str, data: ModelPurchase, request: Request
         )
     proposal = data.model_copy(update={"seller_text": screened.get("content") or "Seller message withheld by read screening."})
     return await asyncio.to_thread(actions.model_purchase, contract_id, proposal, a)
+
+
+class AttackInput(BaseModel):
+    objective: Literal["second_basket", "unapproved_supplier", "redirect_delivery", "data_export"]
+    history: list[dict] = Field(default_factory=list, max_length=4)
+    seed: int = Field(default=0, ge=0, le=2**31 - 1)
+
+
+_attack_times: dict[str, list[float]] = {}
+
+
+@router.post("/v1/purchases/redteam/attack")
+async def redteam_attack(data: AttackInput, request: Request, p: Principal = require("project")):
+    """Fresh attacker turn from the Vertex Gemini red-team model. Returns seller text only; nothing is bought here."""
+    import asyncio
+    import secrets
+    import time
+    from intentseal_core.purchase.redteam import live_attack
+
+    human_only(p)
+    a = actor(request, p)
+    now = time.time()
+    recent = [t for t in _attack_times.get(a["tenant"], []) if now - t < 60]
+    actions.require(len(recent) < 6, "RATE_LIMITED", "At most six generated attacks a minute.", 429)
+    everyone = [t for ts in _attack_times.values() for t in ts if now - t < 60]
+    actions.require(len(everyone) < 30, "RATE_LIMITED", "The red-team model is busy; try again in a minute.", 429)
+    _attack_times[a["tenant"]] = recent + [now]
+    history = [{"seller_text": str(h.get("seller_text", ""))[:900], "plan": h.get("plan")} for h in data.history]
+    return await asyncio.to_thread(live_attack, data.objective, history, data.seed or secrets.randbelow(2**31))
 
 
 @router.get("/v1/purchases/model-runs")

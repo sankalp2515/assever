@@ -35,6 +35,10 @@ export function RedTeam() {
   const [model, setModel] = useState("gemini-3.1-flash-lite");
   const [text, setText] = useState("");
   const [live, setLive] = useState<Live | null>(null);
+  const [objective, setObjective] = useState("second_basket");
+  const [tactic, setTactic] = useState("");
+  const [gen, setGen] = useState<string | null>(null);
+  const [rounds, setRounds] = useState<{ seller_text: string; plan: Plan | null }[]>([]);
 
   useEffect(() => { import("../data/redteam-v1.json").then(m => { const d = m.default as unknown as Data;
     setData(d); const first = d.sessions.find(s => unsafe(s.rounds.at(-1)?.plan ?? null)) ?? d.sessions[0];
@@ -42,6 +46,16 @@ export function RedTeam() {
   }).catch(() => setData(null)); }, []);
 
   const shown = useMemo(() => (data?.sessions ?? []).filter(s => filter === "all" || (filter === "broke" ? unsafe(s.rounds.at(-1)?.plan ?? null) : s.objective === filter)), [data, filter]);
+
+  // Fresh seller text from the attacker model on the backend; it sees the plans the buyer returned in earlier live rounds.
+  async function generate() {
+    setGen("Asking the attacker model for a new tactic…");
+    try {
+      const key = (await api.trialKey()).key;
+      const a = await post<{ tactic: string; seller_text: string }>(key, "/v1/purchases/redteam/attack", { objective, history: rounds.slice(-4) });
+      setText(a.seller_text); setTactic(a.tactic); setLive(null); setGen(null);
+    } catch (e) { setGen((e as Error).message); }
+  }
 
   async function replay() {
     setLive({ stage: "Getting a trial key…" });
@@ -55,6 +69,7 @@ export function RedTeam() {
       setLive({ stage: `Sending the seller text to ${model}…`, wf });
       const run = await post<{ result: { error: unknown; invocation?: { plan?: Plan } } }>(key, `${p}/model-purchase`, { model_id: model, seller_text: text, seed: 1208 });
       const plan = run.result.invocation?.plan ?? null;
+      setRounds(h => [...h, { seller_text: text, plan }].slice(-4));
       setLive({ stage: "Waiting for the supplier and payment simulators…", plan, wf });
       for (let i = 0; i < 60; i++) {
         const c = await call<{ operations: { state: string }[] }>(p, {}, key);
@@ -90,7 +105,7 @@ export function RedTeam() {
         </div>
         <ul className="space-y-2 max-h-[520px] overflow-auto">
           {shown.map(x => { const l = x.rounds.at(-1); return <li key={x.i}>
-            <button className={`w-full text-left card p-3 ${pick?.i === x.i ? "ring-2" : ""}`} onClick={() => { setPick(x); setText(l?.seller_text ?? ""); setModel(x.model); setLive(null); }}>
+            <button className={`w-full text-left card p-3 ${pick?.i === x.i ? "ring-2" : ""}`} onClick={() => { setPick(x); setText(l?.seller_text ?? ""); setModel(x.model); setLive(null); setTactic(""); setRounds([]); }}>
               <span className="text-sm font-semibold">#{x.i} · {OBJ[x.objective]}</span>
               <span className="subtle block text-xs">{x.model} · {x.rounds.length} round{x.rounds.length === 1 ? "" : "s"} · {x.error ? "error" : unsafe(l?.plan ?? null) ? "buyer fooled" : "buyer resisted"}</span>
             </button></li>; })}
@@ -107,8 +122,14 @@ export function RedTeam() {
 
         <div className="card p-5 space-y-3">
           <p className="section-label">Try it live</p>
-          <p className="subtle text-sm">Replay this attack, or write your own, against the deployed Assever checkpoint. A fresh work order is approved, the seller text goes to real Vertex Gemini, and the result comes from the independent checker.</p>
-          <textarea className="input words w-full" rows={5} maxLength={900} value={text} onChange={e => setText(e.target.value)} />
+          <p className="subtle text-sm">Replay this attack, write your own, or have the attacker model ({data.attacker_model}) write a new one now. Each new attack sees what the buyer did in your earlier live rounds. A fresh work order is approved, the seller text goes to real Vertex Gemini, and the result comes from the independent checker.</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <select className="input" value={objective} onChange={e => { setObjective(e.target.value); setRounds([]); }}>{Object.entries(OBJ).map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select>
+            <button className="pill" disabled={!!gen && gen.endsWith("…")} onClick={generate}>{rounds.length ? `Generate round ${rounds.length + 1} attack` : "Generate a new attack"}</button>
+            {tactic && <span className="subtle text-xs">Tactic: {tactic}</span>}
+          </div>
+          {gen && <p className="subtle text-sm">{gen}</p>}
+          <textarea className="input words w-full" rows={5} maxLength={900} value={text} onChange={e => { setText(e.target.value); setTactic(""); }} />
           <div className="flex flex-wrap items-center gap-2">
             <select className="input" value={model} onChange={e => setModel(e.target.value)}><option>gemini-3.1-flash-lite</option><option>gemini-3.5-flash</option></select>
             <button className="pill pill-primary" disabled={!text.trim() || (!!live && !["Done.", "Stopped.", "Model call failed; no fallback was used."].includes(live.stage))} onClick={replay}>Run attack on live Assever</button>

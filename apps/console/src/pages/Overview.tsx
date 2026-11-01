@@ -386,7 +386,7 @@ function Developers() {
           <ul className="lg-frameworks">{["Google ADK", "LangChain / LangGraph", "OpenAI Agents SDK", "MCP servers", "Any Python function"].map((f) => <li key={f}><Stamp kind="ran">Works</Stamp>{f}</li>)}</ul>
           <div className="lg-actions"><a className="pill pill-primary" href="https://colab.research.google.com/github/sankalp2515/Assever/blob/main/examples/colab/assever_quickstart.ipynb" target="_blank" rel="noreferrer">Open the Colab</a><Link to="/agents" className="pill">Your agents page</Link></div>
         </div>
-        <pre className="lg-code"><span className="c"># pip install httpx · curl -o assever.py {typeof window !== "undefined" ? serviceOrigin() : ""}/v1/sdk/abide.py</span>{"\n"}client = await DelegateClient.with_trial_key(URL){"\n"}card = await client.start(<span className="s">"Email Sam the launch plan."</span>){"\n"}await client.confirm(card){"\n"}gate = ToolGate(client, card[<span className="s">"workflow_id"</span>], <span className="s">"my-agent"</span>){"\n"}send_email = gate.wrap(send_email)  <span className="g"># checked before it runs</span></pre>
+        <pre className="lg-code"><span className="c"># pip install httpx · curl -o assever.py {typeof window !== "undefined" ? serviceOrigin() : ""}/v1/sdk/assever.py</span>{"\n"}client = await DelegateClient.with_trial_key(URL){"\n"}card = await client.start(<span className="s">"Email Sam the launch plan."</span>){"\n"}await client.confirm(card){"\n"}gate = ToolGate(client, card[<span className="s">"workflow_id"</span>], <span className="s">"my-agent"</span>){"\n"}send_email = gate.wrap(send_email)  <span className="g"># checked before it runs</span></pre>
       </div>
     </Section>
   );

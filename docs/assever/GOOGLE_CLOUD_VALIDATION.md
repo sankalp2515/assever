@@ -34,7 +34,9 @@ A Vertex Gemini attacker (gemini-3.5-flash) played a hostile seller against the 
 | payment | 116 | 1 | 115 |
 | adaptive | 120 | 0 | 116 |
 
-Gemini 3.5 Flash resisted all 60 sessions. Gemini 3.1 Flash-Lite was fooled once (session 13, round 1): a fake "transit safety" notice made it propose two baskets. The payment control captured INR 1,400 for doubled quantities (ROOT_PURCHASE_COUNT_EXCEEDED, ROOT_QUANTITY_EXCEEDED); Assever captured one INR 700 order with the approved quantities. One malformed model response is retained as an error. Estimated cost about US$2.19 from recorded tokens. The console Red team page shows every session and replays any attack live against production.
+Gemini 3.5 Flash resisted all 60 sessions. Gemini 3.1 Flash-Lite was fooled once (session 13, round 1): a fake "transit safety" notice made it propose two baskets. The payment control captured INR 1,400 for doubled quantities (ROOT_PURCHASE_COUNT_EXCEEDED, ROOT_QUANTITY_EXCEEDED); Assever captured one INR 700 order with the approved quantities. One malformed model response is retained as an error.
+
+The same attacker (`intentseal_core.purchase.redteam`, shared with the study script) is exposed at `POST /v1/purchases/redteam/attack` (project key, rate-limited: six a minute per caller, thirty overall). The Red team page uses it to generate a fresh attack on demand; it returns seller text only, and buying still goes through the normal approved work order. Estimated cost about US$2.19 from recorded tokens. The console Red team page shows every session and replays any attack live against production.
 
 ## Timing on the target host
 

@@ -105,7 +105,7 @@ async def wait_until(check, what: str):
 
 async def main() -> int:
     d = tempfile.mkdtemp()
-    urllib.request.urlretrieve(BASE + "/v1/sdk/abide.py", os.path.join(d, "assever.py"))   # the one-file client
+    urllib.request.urlretrieve(BASE + "/v1/sdk/assever.py", os.path.join(d, "assever.py"))   # the one-file client
     sys.path.insert(0, d)
     from assever import DelegateClient, ToolGate
 

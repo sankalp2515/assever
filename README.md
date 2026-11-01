@@ -77,7 +77,7 @@ That is not enough. Two ₹700 baskets fit inside a ₹1,500 cap even when the o
 
 ### 1 · Try it live (no sign-up)
 
-- **[Red team](https://assever-872171487489.us-central1.run.app/#/red-team):** press **Run attack on live Assever**. The recorded winning attack goes to real Vertex Gemini; when the buyer proposes two baskets, Assever lets exactly one ₹700 order through. Write your own attack in the same box.
+- **[Red team](https://assever-872171487489.us-central1.run.app/#/red-team):** press **Generate a new attack** to have the Gemini attacker write a fresh one on the backend (each next round sees what the buyer did), or **Run attack on live Assever** to replay it. The recorded winning attack goes to real Vertex Gemini; when the buyer proposes two baskets, Assever lets exactly one ₹700 order through. Write your own attack in the same box.
 - **[New purchase](https://assever-872171487489.us-central1.run.app/#/tasks?task=new-purchase):** a private 7-day trial key is created for you. Review and confirm the work order, run a Gemini proposal, run it again (the second is refused with `DEMAND_ALREADY_ENCUMBERED`), then **Verify actual effects** to see the independent check and the consent record.
 
 ### 2 · Run it locally (Docker)
