@@ -1,104 +1,138 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Helios — Assever technical report</title>
+<html lang="en"><head><meta charset="utf-8"><title>Helios Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-@page { size: A4; margin: 16mm 16mm 16mm 16mm; }
-body { font-family: "Segoe UI", Arial, sans-serif; font-size: 10.2pt; line-height: 1.42; color: #1a1d2e; }
-h1 { font-size: 22pt; color: #1F2A6B; margin: 0 0 2mm; }
-h2 { font-size: 13pt; color: #1F2A6B; border-bottom: 1.5px solid #F08A24; padding-bottom: 1mm; margin: 6mm 0 2mm; break-after: avoid; }
-h3 { font-size: 10.8pt; margin: 3.5mm 0 1mm; break-after: avoid; }
-p { margin: 0 0 2mm; } ul { margin: 0 0 2mm 5mm; padding-left: 3mm; } li { margin-bottom: 1mm; }
-table { border-collapse: collapse; width: 100%; margin: 1.5mm 0 3mm; font-size: 9.4pt; break-inside: avoid; }
-th, td { border: 1px solid #cfd2e0; padding: 1.2mm 2mm; text-align: left; vertical-align: top; }
-th { background: #eef0f8; }
-.lead { font-size: 11.5pt; color: #333; } .muted { color: #555; font-size: 9pt; }
-.box { border: 1.5px solid #1F2A6B; border-radius: 3mm; padding: 3mm 4mm; margin: 3mm 0; background: #f7f8fc; break-inside: avoid; }
+@page { size: A4; margin: 15mm 17mm 15mm 17mm; }
+body { font-family: Arial, "Segoe UI", sans-serif; font-size: 10pt; line-height: 1.4; color: #000; }
+.hdr { margin-bottom: 4mm; } .hdr img { height: 6.5mm; }
+h1 { font-family: Outfit, Arial, sans-serif; font-size: 22pt; font-weight: 600; margin: 0 0 1mm; }
+.sub { color: #666; font-size: 11pt; margin: 0 0 4mm; }
+h2 { font-family: Outfit, Arial, sans-serif; font-size: 13pt; font-weight: 600; color: #2e74b5; margin: 6mm 0 2mm; break-after: avoid; }
+p { margin: 0 0 2mm; } ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+table { border-collapse: collapse; width: 100%; margin: 1mm 0 3mm; font-size: 9.6pt; break-inside: auto; }
+tr { break-inside: avoid; }
+th, td { border: 1px solid #b7b7b7; padding: 1.4mm 2mm; text-align: left; vertical-align: top; }
+th { background: #f3f3f3; font-weight: 700; }
+td.f { width: 31%; font-weight: 700; background: #fafafa; }
+.wc { color: #666; font-weight: 400; font-size: 8.5pt; }
+a { color: #1155cc; } code { font-family: Consolas, monospace; font-size: 9pt; }
+img.fig { width: 100%; margin: 1mm 0 2mm; }
 .good { color: #1E7A4F; font-weight: 700; } .bad { color: #C0392B; font-weight: 700; }
-img { max-width: 100%; } code { font-family: Consolas, monospace; font-size: 9pt; }
-.pb { break-before: page; }
 </style></head><body>
 
-<h1>Assever</h1>
-<p class="lead"><b>Purchase integrity for AI agents on India's commerce and payment rails.</b><br>
-Team Helios · SAFL India Agentic AI Security Hackathon · Technical track · Challenge area: System Resilience (with Trust &amp; Consent and Accountability)</p>
-<p class="muted">Live application: https://assever-872171487489.us-central1.run.app · Code: https://github.com/sankalp2515/assever</p>
+<div class="hdr"><img src="safl-logo.png" alt="Secure AI Futures Lab"></div>
+<h1>India Agentic AI Security Hackathon: Submission</h1>
+<p class="sub">Team Helios · Assever · Technical track · Secure AI Futures Lab, August–October 2026</p>
 
-<div class="box"><b>In one sentence.</b> An AI agent can hold a valid key and stay under its budget while still buying twice, buying the wrong pack, paying the wrong party or oversharing customer data; Assever binds every purchase to the exact order a person approved, accounts for money and quantities atomically, and checks what actually happened independently of the agent.<br><br>
-<b>Headline result (deployed system).</b> Against a live adaptive Gemini attacker, a payment-limit-only guard let one fooled Gemini buyer pay <span class="bad">₹1,400 for two baskets</span>; Assever let through <span class="good">exactly one ₹700 order</span>. In a 720-case authored campaign, the payment guard allowed <span class="bad">36 unsafe effects</span> and Assever <span class="good">0</span>, while completing more tasks (126 vs 92 of 144).</div>
+<h2>1. Team information</h2>
+<table>
+<tr><th>Field</th><th>Your answer</th></tr>
+<tr><td class="f">Team name</td><td>Helios</td></tr>
+<tr><td class="f">Primary contact name</td><td>Sankalp Kailash Wanjari</td></tr>
+<tr><td class="f">Primary contact email (registered)</td><td>sankalpwanjari1625@gmail.com</td></tr>
+<tr><td class="f">Primary contact phone / WhatsApp</td><td>Given in the submission form (kept out of this public report)</td></tr>
+<tr><td class="f">Team size</td><td>1</td></tr>
+</table>
 
-<h2>1–3. Team and participation</h2>
-<table><tr><th>Team</th><td>Helios (1 member)</td></tr>
-<tr><th>Member</th><td>Sankalp Kailash Wanjari · Independent · primary contact · sankalpwanjari1625@gmail.com</td></tr>
-<tr><th>Participation</th><td>Online · Technical track · System Resilience</td></tr></table>
+<h2>2. Team members</h2>
+<table>
+<tr><th>Field</th><th>Member 1 (primary contact)</th></tr>
+<tr><td class="f">Full name</td><td>Sankalp Kailash Wanjari</td></tr>
+<tr><td class="f">Email</td><td>sankalpwanjari1625@gmail.com</td></tr>
+<tr><td class="f">Institution / organisation</td><td>Independent</td></tr>
+<tr><td class="f">Background</td><td>Engineer or researcher (AI researcher and engineer)</td></tr>
+</table>
+
+<h2>3. How you took part</h2>
+<table>
+<tr><th>Field</th><th>Your answer</th></tr>
+<tr><td class="f">Participation mode</td><td>Online only</td></tr>
+<tr><td class="f">Track</td><td>Technical (working prototype)</td></tr>
+<tr><td class="f">Challenge area</td><td>System Resilience</td></tr>
+</table>
 
 <h2>4. Project overview</h2>
-<p>Assever is a checkpoint that sits between AI agents and business tools. A person approves a task once, in plain words turned into a reviewable work order. From then on, every consequential tool call is checked against that exact approval. For purchases, the approval names the items and quantities, allowed suppliers, the all-in rupee cap, the delivery point, the customer fields that may be shared, and an expiry. Money and quantities are reserved in one database transaction, only a private executor can send orders and payments, and an independent checker rebuilds what actually happened from separate supplier, payment and disclosure records. The running example is a kirana owner delegating a rice-and-oil replenishment, with a Hindi review view.</p>
+<table>
+<tr><td class="f">Project title</td><td>Assever: Purchase integrity for AI agents on India's commerce and payment rails</td></tr>
+<tr><td class="f">One-line summary <span class="wc">(max 25 words)</span></td><td>A checkpoint that binds every AI-agent purchase to the exact order a person approved, so agents cannot buy twice, buy wrong, pay wrong or overshare.</td></tr>
+<tr><td class="f">Website description <span class="wc">(60–100 words)</span></td><td>AI agents are starting to order stock and pay suppliers for small businesses. An agent can hold a valid key and stay under its budget while still buying twice, choosing the wrong supplier or sharing customer data it should not. Assever lets a person approve a purchase once, in plain words, and then checks every order and payment against that exact approval, with money and quantities reserved atomically and outcomes verified independently. On team-built ONDC-style and UPI-style simulators, a budget-only guard allowed 36 unsafe effects across 720 attack cases; Assever allowed none, even against attackers who know how it works.</td></tr>
+</table>
 
 <h2>5. The problem</h2>
-<h3>DPI assumption that breaks</h3>
-<p>India's commerce and payment rails (ONDC-style ordering, UPI-style payment) assume that whoever initiates a valid, in-limit payment intends that specific purchase. With an AI agent in the middle, that is no longer true. The agent is authorised, the amount is within limit, yet the purchase can still be wrong. We model this with <b>team-owned ONDC-style supplier and UPI-style payment simulators</b>; nothing connects to live ONDC, UPI or a bank.</p>
-<h3>Who is affected and how</h3>
-<p>A per-payment budget preserves the amount but loses the purchase: two ₹700 baskets fit inside a ₹1,500 cap even though the owner approved one. Seller text, memory summaries or fake "system notices" can persuade the agent to change the pack, the payee, the delivery point or the data it shares. Parallel workers and child agents can repeat a purchase with fresh request IDs. A timed-out payment may have succeeded, so retrying it creates a duplicate. Small merchants lose money and stock, customers lose privacy, and payment apps and commerce integrators have no shared record of what was approved, what is pending and what actually happened.</p>
-
-<h2>6. Approach</h2>
-<img src="../../assever/integrated-design/Assever_Google_Architecture.png" alt="Assever architecture on Google Cloud">
-<ul>
-<li><b>Approved purchase order.</b> The person reviews exact quantities, equivalent packs, suppliers, fees, gross cap, delivery fields and expiry. Confirmation and activation of the purchase annex happen in one PostgreSQL transaction.</li>
-<li><b>Root demand identity.</b> Every proposal, from any agent, worker or delegated child, is tied back to the same approved demand. New request IDs or child grants cannot create a second basket.</li>
-<li><b>Atomic ledger.</b> Admission locks the root and reserves integer paise, quantities and purchase count together, inserting a durable outbox record. Reserved, unknown, captured and closed amounts never overlap.</li>
-<li><b>Private executor.</b> Only the executor holds dispatch credentials. It records intent before sending and, when an outcome is uncertain, reconciles instead of blindly retrying. Unknown outcomes stay held, never relabelled as success.</li>
-<li><b>Independent verification.</b> A standard-library checker joins the human approval, policy, workflow receipts and separate order, payment and disclosure records, and returns PASS/FAIL with reasons. Receipts are hash-chained.</li>
-<li><b>Adaptive red-team engine.</b> A Vertex Gemini attacker plays a hostile seller, reads the buyer's returned plan and changes tactic for up to four rounds. Each plan is judged by Assever on the deployed path and by a payment-limit control. The console's <b>Red team</b> page shows every session, replays any attack live against production, and can ask the attacker model on the backend for a fresh attack that adapts to what the buyer did in earlier live rounds.</li>
-<li><b>DEPA-style consent record.</b> Each approval is exported as a purpose-bound consent artefact modelled on India's DEPA framework: purpose, data principal, the AI agent as data consumer, sellers as providers, items, gross cap, frequency, permitted data fields, validity window and revocation, sealed with a digest bound to the approval. An offline checker (standard library, with a matching browser version) tests every supplier, payment and disclosure record against it; anything dispatched after revocation or expiry, or beyond the consented amount, count, units or fields, fails. Applied to every round of the 120 red-team sessions: Assever 476/476 within consent; the payment control's fooled run fails on frequency and units.</li>
-<li><b>Google Cloud.</b> Cloud Run HTTPS edge; Compute Engine runtime with PostgreSQL on a dedicated Persistent Disk (daily snapshots); Vertex AI Gemini 3.5 Flash and 3.1 Flash-Lite through the Google Gen AI SDK and ADK; Model Armor screening; BigQuery audit copy; Secret Manager.</li>
-</ul>
-
-<h3>Threat model under full exposure</h3>
-<p>We assume the attacker knows the code, prompts and policies. They control seller prose, memory summaries, callback bodies and agent tool arguments; they can change request and worker identities, run concurrent calls and aim for a second basket within the cap. A valid merchant identity proves who sent a message, not that it authorises a different quantity, payee, SKU or disclosure. The model, its summaries and its success claims are untrusted. Security does not depend on secrecy of anything except service credentials, which stay outside agent processes and browser bundles. Trusted roots are the operator's reviewed approval, the scoped issuer, merchant registry, transactional database, gateway, executor and effect services. Private effect routes refuse agent credentials; approval routes refuse agent roles. Out of scope: compromised trusted roots, physical fulfilment, general product equivalence and real bank settlement.</p>
-
-<h2>6. Evaluation and key results</h2>
-<p>All results below come from the deployed Google Cloud system, are reported as separate cohorts and keep every error in the denominator. Controls: <i>unrestricted</i> (no checks), <i>payment</i> (a competent per-payment budget guard) and <i>adaptive</i> (Assever).</p>
 <table>
-<tr><th>Study</th><th>Unrestricted</th><th>Payment-limit control</th><th>Assever</th></tr>
-<tr><td>Authored campaign: 24 attack families × 3 provider profiles × 2 role topologies, 720 cells (144 per control)</td><td class="bad">54 unsafe</td><td><span class="bad">36 unsafe</span>, 92/144 completed</td><td><span class="good">0 unsafe</span>, 126/144 completed, 12 unknown outcomes held</td></tr>
-<tr><td>Adaptive red team: Gemini attacker vs Gemini buyer, 2 models × 4 objectives × 15 seeds = 120 sessions, ≤4 rounds</td><td>—</td><td><span class="bad">1 unsafe</span> (₹1,400, two baskets), 115/116 completed</td><td><span class="good">0 unsafe</span>, 116/120 completed</td></tr>
-<tr><td>Gemini cohort: 12 tasks × 2 models × 5 seeds × ordinary/attacked = 240 attempts (235 valid, 5 provider errors)</td><td>—</td><td>0 unsafe, 235 completed</td><td>0 unsafe, 235 completed</td></tr>
+<tr><td class="f">DPI system(s) addressed</td><td>ONDC and UPI (modelled with team-owned ONDC-style ordering and UPI-style payment simulators)</td></tr>
+<tr><td class="f">Which DPI assumption breaks? <span class="wc">(80–150 words)</span></td><td>ONDC ordering and UPI payment assume that whoever initiates a valid, in-limit request intends that specific purchase: the authenticated party who places the order and approves the payment has seen what is being bought, from whom, and how many. An AI agent breaks this. It is legitimately authorised and its payment stays inside the limit, yet the purchase itself can be wrong. Seller text, a memory summary or a fake "system notice" can persuade it to order a second basket, switch to an unapproved supplier, redirect delivery or export customer data. Parallel workers can repeat an order with fresh request IDs, and a timed-out payment that actually succeeded gets retried. Every individual request still looks valid to the rails, so the intent check they rely on no longer protects the person.</td></tr>
+<tr><td class="f">Problem statement and who is affected <span class="wc">(100–150 words)</span></td><td>A kirana owner asks an agent to buy one 5 kg bag of rice and two litres of oil, up to ₹1,500, from supplier A or B. A per-payment budget preserves the amount but loses the purchase: two ₹700 baskets fit inside ₹1,500 even though the owner approved one. A seller who plants a "logistics policy update" in its listing can trigger exactly that. Small merchants lose money and stock, customers lose privacy when the agent overshares, and payment apps and commerce integrators have no shared record of what was approved, what is pending and what actually happened. Because the same agent design is reused across thousands of shops, one working seller message can repeat at scale, and spend limits alone will not catch it because every order stays within the limit.</td></tr>
 </table>
+
+<h2>6. Your approach and findings</h2>
+<p><b>Approach</b> <span class="wc">(150–250 words)</span></p>
+<p>Assever is a checkpoint between AI agents and business tools. A person describes the task in plain words; Gemini drafts a reviewable work order, and the person approves exact items and quantities, allowed suppliers, an all-in rupee cap, the delivery point, the customer fields that may be shared, and an expiry. Every proposal from any agent, worker or child agent is tied back to that one approved demand, so new request IDs cannot create a second basket. Admission locks the demand and reserves integer paise, quantities and purchase count in one PostgreSQL transaction. Only a private executor can send orders and payments; it records intent first and reconciles uncertain outcomes instead of retrying. An independent, standard-library checker rebuilds what happened from separate supplier, payment and disclosure records and returns PASS or FAIL. Each approval is also exported as a DEPA-style consent record that the checker tests every effect against. We chose structured checks over a second model acting as judge because a judge can itself be persuaded by seller text. An adaptive red-team engine, with a Gemini attacker that rewrites its seller text after seeing the buyer's plan, runs on the backend and in the console. Deployed on Google Cloud: Cloud Run edge, Compute Engine with PostgreSQL on Persistent Disk, Vertex AI Gemini 3.5 Flash and 3.1 Flash-Lite, Model Armor and BigQuery.</p>
+<img class="fig" src="../../assever/integrated-design/Assever_Google_Architecture.png" alt="Assever architecture on Google Cloud">
+
+<p><b>Threat model and resilience under exposure</b> <span class="wc">(150–250 words)</span></p>
+<p>The attacker is a hostile seller or anyone who can place text where the agent reads it. They know Assever's code, prompts and policies. They control seller prose, memory summaries, callback bodies and the agent's tool arguments; they can change request and worker identities, run concurrent calls and aim for a second basket within the cap, an unapproved supplier, a redirected delivery or a customer data export. They cannot change the person's approval, the gateway, the executor or the database. A valid merchant identity proves who sent a message, not that it authorises a different quantity, payee, pack or disclosure. Assever does not try to detect malicious-looking text, which an informed attacker would evade. It checks each effect against the approved fields and reserves capacity atomically, so knowing the rules does not help: a second basket is refused because the purchase count is already reserved, whatever words caused it. The model, its explanations and its success claims are untrusted. Nothing depends on secrecy except service credentials, which stay outside agent processes and browser bundles; private effect routes refuse agent keys and approval routes refuse agent roles. Out of scope: compromised trusted roots, physical fulfilment, general product equivalence and real bank settlement.</p>
+
+<p><b>How you evaluated it</b> <span class="wc">(100–200 words)</span></p>
+<p>Every study ran on the deployed Google Cloud system against three controls: <i>unrestricted</i> (no checks), <i>payment</i> (a competent per-payment budget guard, the realistic baseline) and <i>adaptive</i> (Assever). We measured unsafe effects (extra baskets, wrong supplier, wrong delivery, excess disclosure), completed tasks, and outcomes held as unknown, because a defence that blocks real purchases will not be adopted. Studies: an authored campaign of 24 attack families × 3 provider profiles × 2 role topologies (720 cases); an adaptive red team in which a Gemini attacker had up to four rounds per session to fool a Gemini buyer (2 models × 4 objectives × 15 seeds = 120 sessions); and a Gemini cohort of 240 ordinary and attacked tasks. Errors stay in the denominator and are never resampled. All 1,195 effect bundles re-verify offline.</p>
+<table>
+<tr><th>Study</th><th>Unrestricted</th><th>Payment-limit guard</th><th>Assever</th></tr>
+<tr><td>Authored campaign, 720 cases (144 per control)</td><td class="bad">54 unsafe</td><td><span class="bad">36 unsafe</span>, 92/144 completed</td><td><span class="good">0 unsafe</span>, 126/144 completed</td></tr>
+<tr><td>Adaptive red team, 120 sessions, ≤4 rounds</td><td>—</td><td><span class="bad">1 unsafe</span> (₹1,400, two baskets)</td><td><span class="good">0 unsafe</span>, 116/120 completed</td></tr>
+<tr><td>Gemini cohort, 240 attempts (5 provider errors kept)</td><td>—</td><td>0 unsafe, 235 completed</td><td>0 unsafe, 235 completed</td></tr>
+</table>
+
+<p><b>Key results</b></p>
 <ul>
-<li><b>Campaign:</b> Assever is both safer (0 vs 36 unsafe) and more useful (126 vs 92 completed), because safe pre-approved alternatives remain available while duplicate and off-scope effects are refused.</li>
-<li><b>Red team:</b> Gemini 3.5 Flash resisted all 60 of its sessions; Gemini 3.1 Flash-Lite was fooled once by a fake "transit safety" notice claiming oil must ship in two baskets. Rare, but one slip is enough to pay twice under a budget-only guard. Assever's guarantee does not depend on the model resisting. A live replay of this attack on production during preparation fooled the buyer again; Assever again admitted one ₹700 order.</li>
-<li><b>Gemini cohort:</b> proposals were safe under both controls, so this cohort demonstrates that Assever does not reduce useful completion with real models; it is not claimed as a safety gap.</li>
-<li><b>Correctness and scale:</b> 225 foundation, 76 purchase/integration and 8 console tests pass on the deployment; an eight-process, 100-attempt race admits one basket and refuses 99 duplicates; 1,195 effect bundles re-verify offline; core admission p95 93.9 ms on 4 vCPU / 8 GB.</li>
-<li><b>Historical (separate, local):</b> with small Qwen 0.5B/0.6B models, the payment control allowed 53/239 unsafe effects and Assever 0/239.</li>
+<li>Unsafe effects in the 720-case campaign: <span class="bad">36</span> with a payment-limit guard, <span class="good">0</span> with Assever, which also completed more tasks (126 vs 92 of 144).</li>
+<li>Adaptive red team: Gemini 3.1 Flash-Lite was fooled once by a fake logistics notice; the budget guard paid <span class="bad">₹1,400 for two baskets</span>, Assever let through <span class="good">one ₹700 order</span>. Gemini 3.5 Flash resisted all 60 of its sessions.</li>
+<li>Concurrency: an eight-process, 100-attempt race admitted one basket and refused 99 duplicates; core admission p95 is 93.9 ms on 4 vCPU / 8 GB.</li>
+<li>Consent: every red-team round stayed within its DEPA-style consent record for Assever (476/476); the budget guard's fooled run failed on frequency and units.</li>
 </ul>
 
-<h3>What's new</h3>
-<p>An executable purchase-integrity profile that carries one approved demand (items, quantities, gross money and pending uncertainty) across agent delegation and parallel execution, together with independent effect reconstruction, a reproducible comparative lab, and an adaptive model-vs-model red-team engine aimed at purchase correctness rather than jailbreak text. Capabilities, signed authorisation, transactional reservations, idempotency and recovery have established antecedents; we acknowledge AP2, Grantex and recent agent-security work, and our authored controls do not imply any vendor vulnerability.</p>
-
-<h3>Who could use it</h3>
-<p>Buyer-side commerce integrators and payment apps adding agentic checkout. First step: wrap purchase tools with the SDK (proposal, prepare, commit, status), keep provider credentials in the private executor, run the conformance kit and the red-team page in a sandbox. Evaluators such as the IndiaAI Safety Institute could reuse the corpus as an evaluation pilot (a proposed path, not an endorsement). Real rails need independently qualified settlement, status and closure contracts.</p>
-
-<h3>Limitations</h3>
-<p>The commerce profile is finite and synthetic, and its simulator commits order, payment and minimum disclosure atomically; real rails need further adapter qualification. Opaque outcomes stay unresolved rather than recovered. Hosted model capacity and malformed output can block completion; failures are kept, never replaced. The red-team attacker saw the buyer's plan (white-box feedback) and was itself a Gemini model; one success in 120 is a small number. Provider-reported model versions are not weight checksums, and hashes are tamper evidence, not signatures. Hindi support covers review labels, not multilingual security. The global Vertex endpoint does not prove India-only data residency. One persistent runtime; timing is a measured workload, not an SLA. No AP2 interoperability, P3P UAT or live payment certification is claimed.</p>
+<table>
+<tr><td class="f">What's new here</td><td>Most agent defences inspect inputs or cap spend. Assever carries one approved demand (items, quantities, money and pending uncertainty) across delegation and parallel execution, and verifies the effects independently, so it holds against an attacker who knows the system. The model-vs-model red team targets purchase correctness, not jailbreak text.</td></tr>
+<tr><td class="f">Who could use this, and how</td><td>Payment apps and buyer-side ONDC integrators adding agentic checkout: wrap purchase tools with the SDK, keep provider credentials in the private executor, and run the red-team page in a sandbox first. Evaluators could reuse the 720-case corpus as a test suite.</td></tr>
+<tr><td class="f">Limitations and open problems <span class="wc">(80–150 words)</span></td><td>We tested only on simulators we built, not live ONDC, UPI or a bank; real rails need adapter qualification and independent settlement data. The commerce profile is finite and synthetic. Opaque outcomes stay unresolved rather than recovered, which can block completion. The red-team attacker was itself a Gemini model with white-box feedback, and one success in 120 is a small number. Hindi covers review labels only, not multilingual security. The global Vertex endpoint does not prove India-only data residency. Hashes are tamper evidence, not signatures, and timing is a measured workload on one runtime, not an SLA.</td></tr>
+</table>
 
 <h2>7. Reflection</h2>
-<h3>Hardest difficulty</h3>
-<p>The hardest boundary was the gap between approving an action and knowing its consequence. A payment cap looked sufficient until we saw that two affordable baskets satisfy the cap while violating one approved demand, and that a permission receipt cannot tell a rejected payment from a committed one whose response was lost. Releasing capacity after a timeout creates a duplicate; holding it forever blocks useful work. Adding another language model would not fix this, because seller content can influence both the proposal and its explanation.</p>
-<h3>How we overcame it</h3>
-<p>We made purchase identity, normalised quantities and pending obligations explicit and transactional, inside the existing Core rather than a second application, so there is one authority boundary and no bypass path. A private executor became the only dispatch route; tool wrappers return an operation handle instead of executing again. Outcomes are mirrored into the original receipt chain and independently reconstructed. We gave up general purchasing semantics and seamless recovery for opaque providers in exchange for an executable, inspectable contract, and we never relabel uncertainty as success to improve completion numbers. Cloud testing also exposed a task-list race while Gemini drafted a contract; a typed preparing state and owner filtering before pagination fixed it.</p>
+<p><b>Difficulty faced</b> <span class="wc">(200–300 words)</span></p>
+<p>We expected a per-payment budget plus prompt-injection filtering to be enough. It was not. The first surprise was that two affordable baskets satisfy a ₹1,500 cap while violating the one demand the owner approved: the budget preserved the amount and lost the purchase. The second was harder. When a payment call timed out, we could not tell a rejected payment from a committed one whose response was lost. Releasing the reserved capacity after a timeout let a retry create a duplicate; holding it forever blocked legitimate work. Every obvious fix failed under our threat model. A second language model judging whether a purchase "looked right" could be persuaded by the same seller text that fooled the buyer, and an attacker who knows the judge's prompt would write for it. Asking the owner to confirm every order recreates the rubber-stamp problem that makes agents unsafe in the first place. Filtering suspicious seller text helps, but an attacker who can read the filter simply phrases around it, and our red team showed that a polite, plausible logistics notice is enough. The difficulty exposed a tension anyone building agentic checkout will face: strict checks make the agent useless, loose checks make it unsafe, and uncertainty about outcomes makes both worse. It taught us that the real problem is not detecting attacks but keeping track of one approved demand and its pending money across agents, retries and time, which is a state problem rather than a language problem.</p>
+<p><b>How did you overcome it?</b></p>
+<ul>
+<li>Made the approved demand an explicit, transactional object: items, normalised quantities, purchase count and gross paise are reserved together under one lock. We gave up general purchasing semantics for a contract we can execute and inspect.</li>
+<li>Treated uncertainty as state. Unknown outcomes stay held and are reconciled through the provider, never relabelled as success. This costs some completion when providers are opaque.</li>
+<li>Made a private executor the only dispatch route; tool wrappers return an operation handle instead of executing again, which removed retry duplicates.</li>
+<li>Kept safe pre-approved alternatives available, so refusing an unsafe effect does not end the task. This is why completion rose from 92 to 126.</li>
+<li>Still open: real-rail settlement and status contracts, and vaguely worded approvals that cover many items.</li>
+</ul>
 
 <h2>8. Deliverables and declarations</h2>
 <table>
-<tr><th>Code</th><td>https://github.com/sankalp2515/assever (README has a 2-minute judge path)</td></tr>
-<tr><th>Live demo</th><td>https://assever-872171487489.us-central1.run.app (Red team, Tasks, Needs you, Activity, Connect, Evaluation)</td></tr>
-<tr><th>Evidence</th><td>Evidence release with protocols, raw model requests/responses, token usage, effect bundles and the offline checker <code>scripts/verify_assever_google_exports.py</code></td></tr>
-<tr><th>Built during the hackathon</th><td>Yes. All work was done between 5 and 31 October 2026 (red-team study on 1 November), inside the hackathon window. Internal package names <code>intentseal_*</code> are from an earlier stage of this same in-window work.</td></tr>
-<tr><th>AI tools</th><td>I defined the problem, threat model, architecture and evaluation design, and made all decisions. AI coding assistants accelerated implementation: OpenAI Codex (implementation, regression tests, documentation), Anthropic Claude Code (frontend refinement, review, red-team harness, report preparation) and ChatGPT (early planning). In-product models: Vertex Gemini 3.5 Flash and 3.1 Flash-Lite; Qwen 2.5 0.5B / Qwen3 0.6B for the historical local study.</td></tr>
-<tr><th>External code, models, data</th><td>promptfoo (MIT) and garak (Apache-2.0) red-team suites; ProtectAI deberta-v3-base-prompt-injection-v2 (Apache-2.0); Google Gen AI SDK and ADK (Apache-2.0); Google Model Armor; FastAPI, Starlette, Pydantic, React, Vite (MIT); PostgreSQL (PostgreSQL License); psycopg (LGPL-3.0); HTTPX (BSD-3); cryptography (Apache-2.0/BSD); Ollama (MIT); fonts under SIL OFL. All attack scenarios and data are authored by the team and synthetic.</td></tr>
+<tr><th>Field</th><th>Your answer</th></tr>
+<tr><td class="f">Main submission file</td><td>Helios_Report.pdf (this document)</td></tr>
+<tr><td class="f">Code repository</td><td><a href="https://github.com/sankalp2515/assever">https://github.com/sankalp2515/assever</a> (README covers setup, the Google Cloud and Vertex settings needed, and how to reproduce the results)</td></tr>
+<tr><td class="f">Demo video (under 2 minutes)</td><td><a href="https://drive.google.com/file/d/138Z4cQO4L0pqhTae7qkGqln9Cfb6o4Xe/view?usp=sharing">https://drive.google.com/file/d/138Z4cQO4L0pqhTae7qkGqln9Cfb6o4Xe/view?usp=sharing</a></td></tr>
+<tr><td class="f">Other artifacts</td><td>Live app: <a href="https://assever-872171487489.us-central1.run.app">https://assever-872171487489.us-central1.run.app</a> (Red team page generates and runs attacks live). Evidence release in the repository: protocols, raw model requests and responses, token usage, effect bundles, the 720-case scenario set and the offline checker <code>scripts/verify_assever_google_exports.py</code>.</td></tr>
+<tr><td class="f">Was this work done during the hackathon?</td><td>Yes. All work was done between 5 October and 1 November 2026, within the hackathon window. Internal package names <code>intentseal_*</code> are from an earlier stage of this same work.</td></tr>
+<tr><td class="f">AI tools used, and what for</td><td>I defined the problem, threat model, architecture and evaluation design, and made all decisions. OpenAI Codex (implementation, regression tests, documentation); Anthropic Claude Code with Claude Opus 5.5 (frontend, review, red-team harness, report and video preparation); ChatGPT (early planning). In the product: Vertex AI Gemini 3.5 Flash and Gemini 3.1 Flash-Lite (work-order drafting, buyer agent, red-team attacker, explanations); Gemini 2.5 Pro TTS (demo voice-over); Qwen 2.5 0.5B and Qwen3 0.6B (historical local study only).</td></tr>
+<tr><td class="f">External code, models or datasets</td><td>Google Gen AI SDK and ADK (Apache-2.0); Google Model Armor; promptfoo (MIT) and garak (Apache-2.0) red-team suites; ProtectAI deberta-v3-base-prompt-injection-v2 (Apache-2.0); FastAPI, Starlette, Pydantic, React, Vite (MIT); PostgreSQL (PostgreSQL License); psycopg (LGPL-3.0); HTTPX (BSD-3); cryptography (Apache-2.0/BSD); Ollama (MIT); Remotion (Remotion License, free tier for individuals); fonts under SIL OFL. All scenarios and data are authored by the team and synthetic.</td></tr>
+<tr><td class="f">All links open publicly without a login</td><td>Yes</td></tr>
 </table>
 
 <h2>9. Responsible testing</h2>
-<p>No real personal data was used; shops, suppliers, customers and money are synthetic. No weakness in a real system was found or published. All testing ran on team-owned ONDC-style commerce and UPI-style payment simulators in our own Google Cloud project (Cloud Run edge, Compute Engine runtime, PostgreSQL on Persistent Disk, Vertex AI Gemini). No live ONDC, UPI, bank, Aadhaar or DigiLocker system was touched.</p>
+<table>
+<tr><th>Declaration</th><th>Yes / No</th></tr>
+<tr><td>No real personal data: no real Aadhaar numbers, UPI IDs, bank details or personal data were used; all shops, suppliers, customers and money are synthetic.</td><td>Yes</td></tr>
+<tr><td>Responsible disclosure: our public materials contain no working exploit against a real system. We found no weakness in any real system; our attacks target only our own simulators.</td><td>Yes</td></tr>
+<tr><td class="f">Environment you tested in</td><td>Team-owned ONDC-style commerce and UPI-style payment simulators in our own Google Cloud project (Cloud Run, Compute Engine, PostgreSQL on Persistent Disk, Vertex AI Gemini). No live ONDC, UPI, bank, Aadhaar or DigiLocker system was touched.</td></tr>
+</table>
 
-<h2>10. Permissions</h2>
-<p>Sankalp Kailash Wanjari: Yes, the project may be featured; Yes, name and affiliation (Independent) may be published.</p>
+<h2>10. Ownership, permissions and consent</h2>
+<table>
+<tr><th>#</th><th>Permission</th><th>Yes / No</th><th>Members opting out</th></tr>
+<tr><td>1</td><td>Featuring your project: title, summary, website description and public links, with credit, on SAFL channels.</td><td>Yes</td><td>None</td></tr>
+<tr><td>2</td><td>Your names and institutions when featuring the project.</td><td>Yes</td><td>None</td></tr>
+</table>
 </body></html>
